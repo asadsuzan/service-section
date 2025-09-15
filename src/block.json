@@ -1,0 +1,45 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "q3q4/services-cards",
+	"version": "1.0.0",
+	"title": "Services cards",
+	"category": "design",
+	"description": "A services cards block.",
+	"keywords": [
+		"serevice",
+		"card",
+		"service card",
+		"service-card",
+		"cards"
+	],
+	"textdomain": "q3q4",
+	"attributes": {
+		"alignment": {
+			"type": "string",
+			"default": "center"
+		},
+		"colors": {
+			"type": "object",
+			"default": {
+				"color": "black",
+				"bg": "#B1C5A4"
+			}
+		}
+	},
+	"supports": {
+		"align": [
+			"wide",
+			"full"
+		],
+		"html": false
+	},
+	"example": {
+		"attributes": {}
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./view.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}
