@@ -1,32 +1,39 @@
 import { __ } from "@wordpress/i18n";
-import { PanelBody, SelectControl, ToggleControl } from "@wordpress/components";
-import { purposeTypeOptions } from "../../../../utils/options";
-import { updateData } from "../../../../utils/functions";
+import { PanelBody, } from "@wordpress/components";
+
+import { ItemsPanel } from '../../../../../../bpl-tools-main/Components';
+import CardItemsPanel from '../../itemsPanel/cardItemsPanel';
 
 const General = ({ attributes, setAttributes }) => {
-  const { purposeType } = attributes;
+
 
   return (
-    <PanelBody
-      className="bPlPanelBody"
-      title={__("Purpose", "q3q4")}
-      initialOpen={false}
-    >
-      <SelectControl
-        label={__("Purpose", "q3q4")}
-        labelPosition="left"
-        value={purposeType}
-        options={purposeTypeOptions}
-        onChange={(v) =>
-          setAttributes({ purposeType: updateData(purposeType, v) })
-        }
-      />
-      <ToggleControl
-        label="Open links in new tab"
-        checked={attributes.openInNewTab}
-        onChange={(value) => setAttributes({ openInNewTab: value })}
-      />
-    </PanelBody>
+    <>
+
+      <PanelBody
+        className="bPlPanelBody"
+        title={__("Cards", "b-blocks")}
+        initialOpen={true} >
+
+        <ItemsPanel
+          {...{ attributes, setAttributes }}
+          arrKey="cards"
+          activeIndex={0}
+          newItem={{
+
+            title: "Performance Optimization",
+            description: "Optimize your website's speed and performance to ensure fast loading times and better search engine rankings.",
+            icon: "icon"
+
+
+          }}
+          ItemSettings={CardItemsPanel}
+          design="sortable"
+          title='title'
+        />
+      </PanelBody>
+
+    </>
   );
 };
 

@@ -2,11 +2,12 @@ import React from 'react';
 import { DivideIcon as LucideIcon } from 'lucide-react';
 
 
-const ServiceCard = ({ icon: Icon, title, description, variant }) => {
+const ServiceCard = ({ icon, title, description, variant }) => {
     const renderVerticalCard = () => (
         <div className="card-vertical">
             <div className="icon-wrapper">
-                <Icon className="icon" />
+                <span className='icon' dangerouslySetInnerHTML={{ __html: icon }}></span>
+
             </div>
             <h3 className="card-title">{title}</h3>
             <p className="card-description">{description}</p>
@@ -16,7 +17,7 @@ const ServiceCard = ({ icon: Icon, title, description, variant }) => {
     const renderHorizontalCard = () => (
         <div className="card-horizontal">
             <div className="icon-section">
-                <Icon className="icon" />
+                <span className='icon' dangerouslySetInnerHTML={{ __html: icon }}></span>
             </div>
             <div className="content-section">
                 <h3 className="card-title">{title}</h3>
@@ -29,7 +30,7 @@ const ServiceCard = ({ icon: Icon, title, description, variant }) => {
         <div className="card-diagonal">
             <div className="diagonal-bg"></div>
             <div className="icon-wrapper">
-                <Icon className="icon" />
+                <span className='icon' dangerouslySetInnerHTML={{ __html: icon }}></span>
             </div>
             <div className="content-area">
                 <div className="accent-line"></div>

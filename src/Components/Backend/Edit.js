@@ -14,7 +14,7 @@ const Edit = (props) => {
       <div {...useBlockProps()}>
         <Style attributes={attributes} id={`block-${clientId}`} device={device} />
 
-        <App />
+        <App {...{ attributes }} />
       </div>
     </>
   );
