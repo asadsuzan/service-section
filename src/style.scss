@@ -27,29 +27,29 @@ $primaryColor: #4527a4;
 
 		/* Layout 1 - Vertical Stack (Traditional) */
 		.card-vertical {
-			background: #fff;
-			border-radius: 16px;
-			padding: 32px 24px;
-			box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+			// background: #fff;
+			// border-radius: 16px;
+			// padding: 32px 24px;
+			// box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 			transition: all 0.3s ease;
-			text-align: center;
-			position: relative;
+			// text-align: center;
+			// position: relative;
 			overflow: hidden;
 		}
 
-		.card-vertical::before {
-			content: '';
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 4px;
-			background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-		}
+		// .card-vertical::before {
+		// 	content: '';
+		// 	position: absolute;
+		// 	top: 0;
+		// 	left: 0;
+		// 	width: 100%;
+		// 	height: 4px;
+		// 	background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+		// }
 
 		.card-vertical:hover {
 			transform: translateY(-8px);
-			box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+			// box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
 		}
 
 		.card-vertical .icon-wrapper {

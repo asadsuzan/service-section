@@ -78,10 +78,17 @@
 							"left": "24"
 						}
 					},
-					"border": {},
-					"bg": {
-						"color": "linear-gradient(to bottom right, #9333ea, #db2777, #f97316)"
+					"border": {
+						"width": "5px",
+						"style": "solid",
+						"color": "#470099D1",
+						"radius": "16px",
+						"side": "top"
 					},
+					"bg": {
+						"color": "#fff"
+					},
+					"align": "center",
 					"shadow": [
 						{
 							"hOffset": "0px",
@@ -91,7 +98,19 @@
 							"color": "rgba(0, 0, 0, 0.1)",
 							"isInset": false
 						}
-					]
+					],
+					"hover": {
+						"shadow": [
+							{
+								"hOffset": "0px",
+								"vOffset": "20px",
+								"blur": "25px",
+								"spread": "-5px",
+								"color": "rgba(0, 0, 0, 0.1)",
+								"isInset": false
+							}
+						]
+					}
 				}
 			}
 		}
