@@ -2,9 +2,18 @@ import React from 'react';
 import { DivideIcon as LucideIcon } from 'lucide-react';
 
 
-const ServiceCard = ({ icon, title, description, variant }) => {
+const ServiceCard = ({ icon, title, description, variant, isBackend, index, setAttributes }) => {
+
+    const handleActiveCArd = (idx) => {
+
+        if (!isBackend) return;
+
+        setAttributes({ activeCard: idx })
+
+    }
+
     const renderVerticalCard = () => (
-        <div className="card-vertical">
+        <div className="card-vertical" onClick={() => handleActiveCArd(index)}>
             <div className="icon-wrapper">
                 <span className='icon' dangerouslySetInnerHTML={{ __html: icon }}></span>
 
@@ -15,7 +24,7 @@ const ServiceCard = ({ icon, title, description, variant }) => {
     );
 
     const renderHorizontalCard = () => (
-        <div className="card-horizontal">
+        <div className="card-horizontal" onClick={() => handleActiveCArd(index)}>
             <div className="icon-section">
                 <span className='icon' dangerouslySetInnerHTML={{ __html: icon }}></span>
             </div>
@@ -27,7 +36,7 @@ const ServiceCard = ({ icon, title, description, variant }) => {
     );
 
     const renderDiagonalCard = () => (
-        <div className="card-diagonal">
+        <div className="card-diagonal" onClick={() => handleActiveCArd(index)}>
             <div className="diagonal-bg"></div>
             <div className="icon-wrapper">
                 <span className='icon' dangerouslySetInnerHTML={{ __html: icon }}></span>

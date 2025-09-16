@@ -6,6 +6,8 @@ import CardItemsPanel from '../../itemsPanel/cardItemsPanel';
 
 const General = ({ attributes, setAttributes }) => {
 
+  const { activeCard } = attributes || {}
+
 
   return (
     <>
@@ -18,7 +20,7 @@ const General = ({ attributes, setAttributes }) => {
         <ItemsPanel
           {...{ attributes, setAttributes }}
           arrKey="cards"
-          activeIndex={0}
+          activeIndex={activeCard}
           newItem={{
 
             title: "Performance Optimization",

@@ -23,6 +23,10 @@
 			"type": "string",
 			"default": "default"
 		},
+		"activeCard": {
+			"type": "number",
+			"default": 0
+		},
 		"cards": {
 			"type": "array",
 			"default": [
