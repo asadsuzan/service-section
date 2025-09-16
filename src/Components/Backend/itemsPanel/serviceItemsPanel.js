@@ -1,11 +1,11 @@
 
-import { CheckboxControl, Flex, FlexItem, PanelRow, TextareaControl, TextControl, ToggleControl } from "@wordpress/components";
+import { TextareaControl, TextControl, } from "@wordpress/components";
 import { updateData } from '../../../../../bpl-tools-main/utils/functions';
 import { IconLibrary } from '../../../../../bpl-tools-main/Components';
 const serviceItemsPanel = ({ attributes, index, setAttributes }) => {
 
 
-    const { services, theme } = attributes;
+    const { services } = attributes;
 
 
 

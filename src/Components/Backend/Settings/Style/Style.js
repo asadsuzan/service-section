@@ -1,13 +1,13 @@
 
 import { __ } from '@wordpress/i18n';
 import { PanelBody, PanelRow, RangeControl } from '@wordpress/components';
-import { Background, BButtonGroup, BoxControl, ColorsControl, Device, Label, ShadowControl, Typography } from "../../../../../../bpl-tools-main/Components";
+import { Background, BButtonGroup, BoxControl, ColorControl, ColorsControl, Device, Label, ShadowControl, Typography } from "../../../../../../bpl-tools-main/Components";
 import { updateData } from '../../../../../../bpl-tools-main/utils/functions';
 import { BorderControl } from '../../../../../../bpl-tools-main/Components/Deprecated';
 
 const Style = ({ attributes = {}, setAttributes, device }) => {
   const { styles = {} } = attributes;
-  const { columns, body, title, description } = styles
+  const { columns, body, title, description, icon } = styles
 
   return (
     <>
@@ -122,6 +122,51 @@ const Style = ({ attributes = {}, setAttributes, device }) => {
             })
           }
         />
+
+
+        {/* icon wrapper background  */}
+        <Background
+          className="mt10"
+          label="Icon Wrapper Background"
+          value={icon?.bg}
+          onChange={(v) =>
+            setAttributes({
+              styles: updateData(styles, v, 'icon', 'bg')
+            })
+          }
+        />
+
+        {/* icon color  */}
+
+        <ColorControl
+          className='mt20'
+          label='Icon Color'
+          value={icon?.color}
+          onChange={(v) =>
+            setAttributes({
+              styles: updateData(styles, v, 'icon', 'color')
+            })
+          }
+
+        />
+        {/* icon size  */}
+
+        <RangeControl
+          className='mt20'
+          label='Icon Size'
+          value={icon?.size}
+          onChange={(v) =>
+            setAttributes({
+              styles: updateData(styles, v, 'icon', 'size')
+            })
+          }
+          max={100}
+          min={1}
+
+        />
+
+
+
 
 
         {/* title typo  */}

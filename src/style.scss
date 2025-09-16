@@ -55,7 +55,7 @@ $primaryColor: #4527a4;
 		.card-vertical .icon-wrapper {
 			width: 80px;
 			height: 80px;
-			background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+			// background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 			border-radius: 50%;
 			display: flex;
 			align-items: center;
@@ -64,9 +64,19 @@ $primaryColor: #4527a4;
 		}
 
 		.card-vertical .icon {
-			color: white;
-			width: 40px;
-			height: 40px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			padding: 10px;
+			height: 100%;
+			width: 100%;
+
+		}
+
+		.card-vertical .icon-wrapper svg {
+			// color: red;
+			// width: 100%;
+			// height: 100%;
 		}
 
 		.card-vertical .card-title {

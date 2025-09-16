@@ -1,8 +1,9 @@
 import React from 'react';
 import { DivideIcon as LucideIcon } from 'lucide-react';
+import { addSvgAttrs } from '../../utils/functions';
 
 
-const ServiceCard = ({ icon, title, description, variant, isBackend, index, setAttributes }) => {
+const ServiceCard = ({ icon, title, description, variant, isBackend, index, setAttributes, styles }) => {
 
     const handleActiveCArd = (idx) => {
 
@@ -15,7 +16,16 @@ const ServiceCard = ({ icon, title, description, variant, isBackend, index, setA
     const renderVerticalCard = () => (
         <div className="card-vertical q3q4-service" onClick={() => handleActiveCArd(index)}>
             <div className="icon-wrapper">
-                <span className='icon' dangerouslySetInnerHTML={{ __html: icon }}></span>
+                <span className='icon' dangerouslySetInnerHTML={{
+                    __html: addSvgAttrs(icon, {
+                        stroke: "currentColor",
+                        fill: "currentColor",
+                        strokeWidth: 0,
+                        height: `${styles?.icon?.size}%`,
+                        width: `${styles?.icon?.size}%`,
+                        color: `${styles?.icon?.color}`,
+                    }),
+                }}></span>
 
             </div>
             <h3 className="card-title">{title}</h3>

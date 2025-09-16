@@ -1,14 +1,16 @@
 import { mobileBreakpoint, tabBreakpoint } from '../../../../bpl-tools-main/utils/data';
-import { getBackgroundCSS, getBorderCSS, getBoxCSS, getColorsCSS, getMultiShadowCSS, getTypoCSS, isValidCSS } from "../../../../bpl-tools-main/utils/getCSS"
-const Style = ({ attributes = {}, id, device }) => {
+import { getBackgroundCSS, getBorderCSS, getBoxCSS, getColorsCSS, getMultiShadowCSS, getTypoCSS } from "../../../../bpl-tools-main/utils/getCSS"
+const Style = ({ attributes = {}, id }) => {
 	const { theme = 'vertical', styles = {} } = attributes
-	const { body, columns, title, description } = styles
+	const { body, columns, title, description, icon } = styles
 	const mainSl = `#${id}`;
 	const blockSl = `${mainSl} .q3q4_wrapper`;
 	const gridSl = `${blockSl} .cards-grid`;
 	const cardSl = `${gridSl} .card-${theme}`;
 	const titleSl = `${cardSl} .card-title`;
 	const descriptionSl = `${cardSl} .card-description`;
+	const iconWrapperSl = `${cardSl} .icon-wrapper`;
+
 
 
 	return <style dangerouslySetInnerHTML={{
@@ -49,6 +51,11 @@ const Style = ({ attributes = {}, id, device }) => {
 		${descriptionSl}{
 		${getColorsCSS(description?.colors)}
 		}
+
+		${iconWrapperSl}{
+		${getBackgroundCSS(icon?.bg)}
+		}
+	
          
 
 
@@ -56,24 +63,22 @@ const Style = ({ attributes = {}, id, device }) => {
     
 	    ${tabBreakpoint}{
 
-					${gridSl}{
-					grid-template-columns: repeat(${columns?.tablet}, 1fr);
-					}
+		${gridSl}{
+		 grid-template-columns: repeat(${columns?.tablet}, 1fr);
+		}
+        ${cardSl}{
+			padding:${getBoxCSS(body?.padding?.tablet)};
+		 }
 
-						
-				${cardSl}{
-					padding:${getBoxCSS(body?.padding?.tablet)};
-				}
-
-          }
+        }
 
 		  ${mobileBreakpoint} {
-				${gridSl}{
-					grid-template-columns: repeat(${columns?.mobile}, 1fr);
-				}
-				${cardSl}{
-				padding:${getBoxCSS(body?.padding?.mobile)};
-			    }
+		  ${gridSl}{
+		  grid-template-columns: repeat(${columns?.mobile}, 1fr);
+		  }
+		  ${cardSl}{
+		  padding:${getBoxCSS(body?.padding?.mobile)};
+		  }
 		}
 
 
