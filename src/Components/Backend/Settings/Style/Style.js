@@ -7,7 +7,7 @@ import { BorderControl } from '../../../../../../bpl-tools-main/Components/Depre
 
 const Style = ({ attributes = {}, setAttributes, device }) => {
   const { styles = {} } = attributes;
-  const { columns, body, title } = styles
+  const { columns, body, title, description } = styles
 
   return (
     <>
@@ -145,6 +145,30 @@ const Style = ({ attributes = {}, setAttributes, device }) => {
           onChange={(v) =>
             setAttributes({
               styles: updateData(styles, v, 'title', "colors")
+            })
+          }
+        />
+        {/* description typo  */}
+
+        <Typography
+          className="mt10"
+          label={__('Description Typo', 'q3q4')}
+          value={description?.typo}
+          onChange={(v) =>
+            setAttributes({
+              styles: updateData(styles, v, 'description', "typo")
+            })
+          }
+        />
+
+        {/* description colors  */}
+
+        <ColorsControl
+          label="Description Colors"
+          value={description?.colors}
+          onChange={(v) =>
+            setAttributes({
+              styles: updateData(styles, v, 'description', "colors")
             })
           }
         />

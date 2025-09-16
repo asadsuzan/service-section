@@ -128,6 +128,22 @@
 						"color": "#1a202c",
 						"bg": ""
 					}
+				},
+				"description": {
+					"typo": {
+						"fontSize": {
+							"desktop": "1rem",
+							"tablet": "1rem",
+							"mobile": "1rem"
+						},
+						"fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif",
+						"lineHeight": "1.6rem",
+						"letterSpacing": "normal"
+					},
+					"colors": {
+						"color": "#4a5568",
+						"bg": ""
+					}
 				}
 			}
 		}
