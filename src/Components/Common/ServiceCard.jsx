@@ -25,7 +25,7 @@ const ServiceCard = ({ icon, title, description, variant, isBackend, index, setA
 
     const renderHorizontalCard = () => (
         <div className="card-horizontal q3q4-service" onClick={() => handleActiveCArd(index)}>
-            <div className="icon-section">
+            <div className="icon-wrapper">
                 <span className='icon' dangerouslySetInnerHTML={{ __html: icon }}></span>
             </div>
             <div className="content-section">

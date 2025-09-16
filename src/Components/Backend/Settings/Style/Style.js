@@ -1,14 +1,14 @@
 
 import { __ } from '@wordpress/i18n';
 import { PanelBody, PanelRow, RangeControl } from '@wordpress/components';
-import { Background, BButtonGroup, BoxControl, Device, Label, ShadowControl } from "../../../../../../bpl-tools-main/Components";
+import { Background, BButtonGroup, BoxControl, ColorsControl, Device, Label, ShadowControl, Typography } from "../../../../../../bpl-tools-main/Components";
 import { updateData } from '../../../../../../bpl-tools-main/utils/functions';
 import { BorderControl } from '../../../../../../bpl-tools-main/Components/Deprecated';
 
 const Style = ({ attributes = {}, setAttributes, device }) => {
   const { styles = {} } = attributes;
-  const { columns, body } = styles
-  console.log(body?.border);
+  const { columns, body, title } = styles
+
   return (
     <>
       {/* grid settings  */}
@@ -119,6 +119,32 @@ const Style = ({ attributes = {}, setAttributes, device }) => {
           onChange={(v) =>
             setAttributes({
               styles: updateData(styles, v, 'body', 'border')
+            })
+          }
+        />
+
+
+        {/* title typo  */}
+
+        <Typography
+          className="mt10"
+          label={__('Title Typo', 'q3q4')}
+          value={title?.typo}
+          onChange={(v) =>
+            setAttributes({
+              styles: updateData(styles, v, 'title', "typo")
+            })
+          }
+        />
+
+        {/* title colors  */}
+
+        <ColorsControl
+          label="Title Colors"
+          value={title?.colors}
+          onChange={(v) =>
+            setAttributes({
+              styles: updateData(styles, v, 'title', "colors")
             })
           }
         />

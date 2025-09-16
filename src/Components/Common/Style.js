@@ -1,17 +1,19 @@
 import { mobileBreakpoint, tabBreakpoint } from '../../../../bpl-tools-main/utils/data';
-import { getBackgroundCSS, getBorderCSS, getBoxCSS, getMultiShadowCSS, getTypoCSS, isValidCSS } from "../../../../bpl-tools-main/utils/getCSS"
+import { getBackgroundCSS, getBorderCSS, getBoxCSS, getColorsCSS, getMultiShadowCSS, getTypoCSS, isValidCSS } from "../../../../bpl-tools-main/utils/getCSS"
 const Style = ({ attributes = {}, id, device }) => {
 	const { theme = 'vertical', styles = {} } = attributes
-	const { body, columns } = styles
+	const { body, columns, title } = styles
 	const mainSl = `#${id}`;
 	const blockSl = `${mainSl} .q3q4_wrapper`;
 	const gridSl = `${blockSl} .cards-grid`;
 	const cardSl = `${gridSl} .card-${theme}`;
+	const titleSl = `${cardSl} .card-title`;
 
 
 	return <style dangerouslySetInnerHTML={{
 		__html: `
-		 
+		    ${getTypoCSS("", title?.typo)?.googleFontLink} 
+		    ${getTypoCSS(titleSl, title?.typo)?.styles} 
 
 
 	   ${gridSl}{
@@ -32,10 +34,13 @@ const Style = ({ attributes = {}, id, device }) => {
 	 text-align:${body?.align};
 }
 
-${cardSl}:hover{
- box-shadow:${getMultiShadowCSS(body?.hover?.shadow)};
-}
+		${cardSl}:hover{
+		box-shadow:${getMultiShadowCSS(body?.hover?.shadow)};
+		}
 
+	${titleSl}{
+	${getColorsCSS(title?.colors)}
+	}
 
     
 	    ${tabBreakpoint}{
