@@ -1,15 +1,27 @@
 import { __ } from "@wordpress/i18n";
-import { PanelBody, } from "@wordpress/components";
+import { PanelBody, SelectControl, } from "@wordpress/components";
 import { ItemsPanel } from '../../../../../../bpl-tools-main/Components';
 import serviceItemsPanel from '../../itemsPanel/serviceItemsPanel';
+import { themeSwitch } from '../../../../utils/functions';
+import { themeOptions } from '../../../../utils/options';
 
 const General = ({ attributes, setAttributes }) => {
 
-  const { activeCard } = attributes || {}
+  const { activeCard, theme } = attributes || {}
 
 
   return (
     <>
+
+      {/* theme switcher  */}
+      <PanelBody className="bPlPanelBody"
+        title={__("Themes", "b-blocks")}
+        initialOpen={true}>
+        <SelectControl
+          value={theme} options={themeOptions}
+          onChange={(value) => setAttributes(themeSwitch(value, attributes))}
+        />
+      </PanelBody>
 
       <PanelBody
         className="bPlPanelBody"

@@ -9,3 +9,11 @@ export const purposeTypeOptions = [
 	{ label: "Primary", value: "primary" }
 ];
 
+
+
+export const themeOptions = [
+	{ value: 'vertical', label: __('Vertical', 'q3-q4') },
+	{ value: 'horizontal', label: __('Horizontal', 'q3-q4') },
+	{ value: 'diagonal', label: __('Diagonal', 'q3-q4') },
+
+]

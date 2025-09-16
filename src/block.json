@@ -21,7 +21,7 @@
 		},
 		"theme": {
 			"type": "string",
-			"default": "default"
+			"default": "vertical"
 		},
 		"activeCard": {
 			"type": "number",
@@ -56,6 +56,42 @@
 					"mobile": 1,
 					"gapX": "1.5rem",
 					"gapY": "2rem"
+				},
+				"body": {
+					"padding": {
+						"desktop": {
+							"top": "32px",
+							"right": "24px",
+							"bottom": "32px",
+							"left": "24px"
+						},
+						"tablet": {
+							"top": "32px",
+							"right": "24px",
+							"bottom": "32px",
+							"left": "24"
+						},
+						"mobile": {
+							"top": "32px",
+							"right": "24px",
+							"bottom": "32px",
+							"left": "24"
+						}
+					},
+					"border": {},
+					"bg": {
+						"color": "linear-gradient(to bottom right, #9333ea, #db2777, #f97316)"
+					},
+					"shadow": [
+						{
+							"hOffset": "0px",
+							"vOffset": "4px",
+							"blur": "6px",
+							"spread": "-1px",
+							"color": "rgba(0, 0, 0, 0.1)",
+							"isInset": false
+						}
+					]
 				}
 			}
 		}

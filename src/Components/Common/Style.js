@@ -1,14 +1,17 @@
 import { mobileBreakpoint, tabBreakpoint } from '../../../../bpl-tools-main/utils/data';
 
 const Style = ({ attributes, id, device }) => {
+	const { theme = 'vertical' } = attributes || {}
 	const mainSl = `#${id}`;
 	const blockSl = `${mainSl} .q3q4_wrapper`;
 	const gridSl = `${blockSl} .cards-grid`;
+	const cardSl = `${gridSl} .card-${theme}`;
 
 	const { styles } = attributes || {}
 	const { columns } = styles || {}
 
-	console.log(device);
+	console.log('card', cardSl);
+
 	return <style dangerouslySetInnerHTML={{
 		__html: `
 		 
@@ -20,6 +23,16 @@ const Style = ({ attributes, id, device }) => {
 			row-gap: ${columns?.gapX};
 			column-gap: ${columns?.gapY};
 	 }
+
+
+
+	   
+ ${cardSl}{
+   
+ 
+ }
+
+
 
     
 	    ${tabBreakpoint}{
@@ -34,6 +47,9 @@ const Style = ({ attributes, id, device }) => {
 					grid-template-columns: repeat(${columns?.mobile}, 1fr);
 				}
 		}
+
+
+
 
 
 
