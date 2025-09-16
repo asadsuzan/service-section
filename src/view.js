@@ -1,9 +1,7 @@
 import { createRoot } from 'react-dom/client';
 import './style.scss';
 import Style from './Components/Common/Style';
-
-
-import ServiceCard from './Components/Common/ServiceCard';
+import App from './Components/Common/App';
 
 document.addEventListener('DOMContentLoaded', () => {
 	const blockNameEls = document.querySelectorAll('.wp-block-q3q4-services-cards');
@@ -13,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		createRoot(blockNameEl).render(<>
 			<Style attributes={attributes} id={blockNameEl.id} />
 
-			<ServiceCard />
+			<App />
 		</>);
 
 		blockNameEl?.removeAttribute('data-attributes');

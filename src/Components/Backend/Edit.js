@@ -1,8 +1,7 @@
 import { useBlockProps } from "@wordpress/block-editor";
 import Settings from "./Settings/Settings";
 import Style from "../Common/Style";
-
-import ServiceCard from '../Common/ServiceCard';
+import App from '../Common/App';
 
 const Edit = (props) => {
   const { attributes, setAttributes, clientId } = props;
@@ -14,7 +13,7 @@ const Edit = (props) => {
       <div {...useBlockProps()}>
         <Style attributes={attributes} id={`block-${clientId}`} />
 
-        <ServiceCard />
+        <App />
       </div>
     </>
   );
