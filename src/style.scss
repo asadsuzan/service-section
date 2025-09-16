@@ -20,9 +20,9 @@ $primaryColor: #4527a4;
 		.cards-grid {
 			display: grid;
 			// grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-			grid-template-columns: repeat(3, 1fr);
-			gap: 30px;
-			margin-bottom: 60px;
+			// grid-template-columns: repeat(3, 1fr);
+			// gap: 30px;
+			// margin-bottom: 60px;
 		}
 
 		/* Layout 1 - Vertical Stack (Traditional) */
@@ -232,10 +232,10 @@ $primaryColor: #4527a4;
 				font-size: 2rem;
 			}
 
-			.cards-grid {
-				grid-template-columns: 1fr;
-				gap: 24px;
-			}
+			// .cards-grid {
+			// 	grid-template-columns: 1fr;
+			// 	gap: 24px;
+			// }
 
 			.app-container {
 				padding: 20px 16px;

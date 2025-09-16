@@ -19,11 +19,16 @@
 			"type": "string",
 			"default": "center"
 		},
-		"colors": {
+		"styles": {
 			"type": "object",
 			"default": {
-				"color": "black",
-				"bg": "#B1C5A4"
+				"columns": {
+					"desktop": 3,
+					"tablet": 2,
+					"mobile": 1,
+					"gapX": "1.5rem",
+					"gapY": "2rem"
+				}
 			}
 		}
 	},
