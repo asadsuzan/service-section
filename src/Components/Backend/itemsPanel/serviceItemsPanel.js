@@ -2,11 +2,11 @@
 import { CheckboxControl, Flex, FlexItem, PanelRow, TextareaControl, TextControl, ToggleControl } from "@wordpress/components";
 import { updateData } from '../../../../../bpl-tools-main/utils/functions';
 import { IconLibrary } from '../../../../../bpl-tools-main/Components';
-const CardItemsPanel = ({ attributes, index, setAttributes }) => {
+const serviceItemsPanel = ({ attributes, index, setAttributes }) => {
 
 
-    const { cards, theme } = attributes;
-    console.log(cards, theme);
+    const { services, theme } = attributes;
+
 
 
     return (
@@ -14,14 +14,14 @@ const CardItemsPanel = ({ attributes, index, setAttributes }) => {
 
             <TextControl
                 label="Title"
-                value={cards[index]?.title}
-                onChange={v => setAttributes({ cards: updateData(cards, v, index, 'title') })}
+                value={services[index]?.title}
+                onChange={v => setAttributes({ services: updateData(services, v, index, 'title') })}
 
             />
             <TextareaControl
                 label="Description"
-                value={cards[index]?.description}
-                onChange={v => setAttributes({ cards: updateData(cards, v, index, 'description') })}
+                value={services[index]?.description}
+                onChange={v => setAttributes({ services: updateData(services, v, index, 'description') })}
 
             />
 
@@ -31,8 +31,8 @@ const CardItemsPanel = ({ attributes, index, setAttributes }) => {
                 label="Icon"
                 onChange={(v) =>
                     setAttributes({
-                        cards: updateData(
-                            cards,
+                        services: updateData(
+                            services,
                             v,
                             index,
                             "icon"
@@ -46,5 +46,5 @@ const CardItemsPanel = ({ attributes, index, setAttributes }) => {
     );
 };
 
-export default CardItemsPanel;
+export default serviceItemsPanel;
 

@@ -1,8 +1,7 @@
 import { __ } from "@wordpress/i18n";
 import { PanelBody, } from "@wordpress/components";
-
 import { ItemsPanel } from '../../../../../../bpl-tools-main/Components';
-import CardItemsPanel from '../../itemsPanel/cardItemsPanel';
+import serviceItemsPanel from '../../itemsPanel/serviceItemsPanel';
 
 const General = ({ attributes, setAttributes }) => {
 
@@ -14,12 +13,12 @@ const General = ({ attributes, setAttributes }) => {
 
       <PanelBody
         className="bPlPanelBody"
-        title={__("Cards", "b-blocks")}
+        title={__("Services", "b-blocks")}
         initialOpen={true} >
 
         <ItemsPanel
           {...{ attributes, setAttributes }}
-          arrKey="cards"
+          arrKey="services"
           activeIndex={activeCard}
           newItem={{
 
@@ -29,9 +28,10 @@ const General = ({ attributes, setAttributes }) => {
 
 
           }}
-          ItemSettings={CardItemsPanel}
+          ItemSettings={serviceItemsPanel}
           design="sortable"
           title='title'
+          itemLabel='Service'
         />
       </PanelBody>
 

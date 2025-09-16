@@ -27,7 +27,7 @@
 			"type": "number",
 			"default": 0
 		},
-		"cards": {
+		"services": {
 			"type": "array",
 			"default": [
 				{
