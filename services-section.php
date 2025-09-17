@@ -14,16 +14,16 @@
 if ( !defined( 'ABSPATH' ) ) { exit; }
 
 // Constant
-define( 'PREFIX_VERSION', isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.0.0' );
-define( 'PREFIX_DIR_URL', plugin_dir_url( __FILE__ ) );
-define( 'PREFIX_DIR_PATH', plugin_dir_path( __FILE__ ) );
+define( 'Q3Q4SCB_VERSION', isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.0.0' );
+define( 'Q3Q4SCB_DIR_URL', plugin_dir_url( __FILE__ ) );
+define( 'Q3Q4SCB_DIR_PATH', plugin_dir_path( __FILE__ ) );
 
 if( !class_exists( 'PREFIXPlugin' ) ){
 	class PREFIXPlugin{
 		function __construct(){
 			add_action( 'init', [ $this, 'onInit' ] );
-			add_filter('manage_q3q4_service_card_posts_columns', [$this, 'sc_setCustomColumn_edit']);
-			add_action('manage_q3q4_service_card_posts_custom_column', [$this, 'sc_manageCustomColumn'], 10, 2);
+			add_filter('manage_q3q4_service_card_posts_columns', [$this, 'q3q4_cpt_callback']);
+			add_action('manage_q3q4_service_card_posts_custom_column', [$this, 'q3q4_manage_cpt_columns'], 10, 2);
 		    add_shortcode('service_card', [$this, 'service_card_shortcode']);
 			add_action('admin_enqueue_scripts', [$this, 'sc_admin_enqueue_script']);
 	
@@ -36,39 +36,39 @@ if( !class_exists( 'PREFIXPlugin' ) ){
 				'label' => 'Service card',
 				'description' => 'this is Service_card and seo friendly card',
 				'labels' => [
-					'name' => __('Service_card', 'service-card'),
-					'singular_name' => __('Service_card', 'service-card'),
-					'add_new' => __('Add New', 'service-card'),
-					'add_new_item' => __('Add New Service_card', 'service-card'),
-					'edit_item' => __('Edit Service_card', 'service-card'),
-					'new_item' => __('New Service_card', 'service-card'),
-					'view_item' => __('View Service_card', 'service-card'),
-					'view_items' => __('View Service_card', 'service-card'),
-					'search_items' => __('Search Service_card', 'service-card'),
-					'not_found' => __('No Service_card found.', 'service-card'),
-					'not_found_in_trash' => __('No Service_card found in Trash.', 'service-card'),
-					'parent_item_colon' => __('Parent Service_card:', 'service-card'),
-					'all_items' => __('All Service_card', 'service-card'),
-					'archives' => __('Service_card Archives', 'service-card'),
-					'attributes' => __('Service_card Attributes', 'service-card'),
-					'insert_into_item' => __('Insert into Service_card', 'service-card'),
-					'uploaded_to_this_item' => __('Uploaded to this Service_card', 'service-card'),
-					'featured_image' => __('Featured Image', 'service-card'),
-					'set_featured_image' => __('Set featured image', 'service-card'),
-					'remove_featured_image' => __('Remove featured image', 'service-card'),
-					'use_featured_image' => __('Use as featured image', 'service-card'),
-					'menu_name' => __('Service Card', 'service-card'),
-					'filter_items_list' => __('Filter Service_card list', 'service-card'),
-					'filter_by_date' => __('Filter by date', 'service-card'),
-					'items_list_navigation' => __('Service_card list navigation', 'service-card'),
-					'items_list' => __('Service_card list', 'service-card'),
-					'item_published' => __('Service_card published.', 'service-card'),
-					'item_published_privately' => __('Service_card published privately.', 'service-card'),
-					'item_reverted_to_draft' => __('Service_card reverted to draft.', 'service-card'),
-					'item_scheduled' => __('Service_card scheduled.', 'service-card'),
-					'item_updated' => __('Service_card updated.', 'service-card'),
-					'item_link' => __('Service_card Link', 'service-card'),
-					'item_link_description' => __('A link to an Service_card.', 'service-card'),
+					'name' => __('Service_card', 'q3q4'),
+					'singular_name' => __('Service_card', 'q3q4'),
+					'add_new' => __('Add New', 'q3q4'),
+					'add_new_item' => __('Add New Service', 'q3q4'),
+					'edit_item' => __('Edit Service_card', 'q3q4'),
+					'new_item' => __('New Service_card', 'q3q4'),
+					'view_item' => __('View Service_card', 'q3q4'),
+					'view_items' => __('View Service_card', 'q3q4'),
+					'search_items' => __('Search Service_card', 'q3q4'),
+					'not_found' => __('No Service_card found.', 'q3q4'),
+					'not_found_in_trash' => __('No Service_card found in Trash.', 'q3q4'),
+					'parent_item_colon' => __('Parent Service_card:', 'q3q4'),
+					'all_items' => __('All Service', 'q3q4'),
+					'archives' => __('Service_card Archives', 'q3q4'),
+					'attributes' => __('Service_card Attributes', 'q3q4'),
+					'insert_into_item' => __('Insert into Service_card', 'q3q4'),
+					'uploaded_to_this_item' => __('Uploaded to this Service_card', 'q3q4'),
+					'featured_image' => __('Featured Image', 'q3q4'),
+					'set_featured_image' => __('Set featured image', 'q3q4'),
+					'remove_featured_image' => __('Remove featured image', 'q3q4'),
+					'use_featured_image' => __('Use as featured image', 'q3q4'),
+					'menu_name' => __('Service Card', 'q3q4'),
+					'filter_items_list' => __('Filter Service_card list', 'q3q4'),
+					'filter_by_date' => __('Filter by date', 'q3q4'),
+					'items_list_navigation' => __('Service_card list navigation', 'q3q4'),
+					'items_list' => __('Service_card list', 'q3q4'),
+					'item_published' => __('Service_card published.', 'q3q4'),
+					'item_published_privately' => __('Service_card published privately.', 'q3q4'),
+					'item_reverted_to_draft' => __('Service_card reverted to draft.', 'q3q4'),
+					'item_scheduled' => __('Service_card scheduled.', 'q3q4'),
+					'item_updated' => __('Service_card updated.', 'q3q4'),
+					'item_link' => __('Service_card Link', 'q3q4'),
+					'item_link_description' => __('A link to an Service_card.', 'q3q4'),
 				],
 				'public' => true, //frontend or backend show
 				"publicly_queryable" => false, //view link hidden
@@ -76,7 +76,7 @@ if( !class_exists( 'PREFIXPlugin' ) ){
 				'show_in_menu' => true,
 				'show_in_rest' => true,  //REST support
 				'menu_position' => 79, //position type
-				'menu_icon' => 'dashicons-index-card', //icon
+				'menu_icon' => 'dashicons-admin-tools', //icon
 				'supports' => array('title', 'editor', 'revisions'),
 				'template' => [['q3q4/services-cards']],  //open templated
 				'template_lock' => 'all', //lock
@@ -88,7 +88,7 @@ if( !class_exists( 'PREFIXPlugin' ) ){
 		}
 
 		//custome column 
-		function sc_setCustomColumn_edit($column)
+		function q3q4_cpt_callback($column)
 		{
 			unset($column['date']);
 			$column['shortcode'] = 'ShortCode';
@@ -98,7 +98,7 @@ if( !class_exists( 'PREFIXPlugin' ) ){
 		}
 
 		//column UI
-		function sc_manageCustomColumn($column_name, $post_id)
+		function q3q4_manage_cpt_columns($column_name, $post_id)
 		{
 			if ($column_name == 'shortcode') {
 				echo '<div class="bPlAdminShortcode" id="bPlAdminShortcode-' . esc_attr($post_id) . '">
@@ -159,8 +159,8 @@ if( !class_exists( 'PREFIXPlugin' ) ){
 			global $typenow;
 
 			if ('q3q4_service_card' === $typenow) {
-				wp_enqueue_script('shortcode-js', PREFIX_DIR_URL . './build/shortcode.js', [], PREFIX_VERSION, true);
-				wp_enqueue_style('shortcode-css', PREFIX_DIR_URL . './build/shortcode.css', PREFIX_VERSION);
+				wp_enqueue_script('shortcode-js', Q3Q4SCB_DIR_URL . './build/shortcode.js', [], Q3Q4SCB_VERSION, true);
+				wp_enqueue_style('shortcode-css', Q3Q4SCB_DIR_URL . './build/shortcode.css', Q3Q4SCB_VERSION);
 
 			}
 		}
