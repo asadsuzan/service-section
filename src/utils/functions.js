@@ -166,14 +166,15 @@ export const themeSwitch = (theme = "vertical", attributes) => produce(attribute
               "isInset": false
             }
           ],
+
           "hover": {
             "shadow": [
               {
                 "hOffset": "0px",
                 "vOffset": "20px",
-                "blur": "25px",
-                "spread": "-5px",
-                "color": "rgba(0, 0, 0, 0.1)",
+                "blur": "40px",
+                "spread": "0",
+                "color": "rgba(0, 0, 0, 0.15)",
                 "isInset": false
               }
             ]
@@ -219,7 +220,7 @@ export const themeSwitch = (theme = "vertical", attributes) => produce(attribute
           "size": 100,
           "color": "#fff",
           "bar": {
-            "bg": "linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%)"
+            "color": "linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%)"
           }
         }
       }

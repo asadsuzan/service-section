@@ -12,7 +12,7 @@ const Style = ({ attributes = {}, id }) => {
 	const descriptionSl = `${cardSl} .card-description`;
 	const iconWrapperSl = `${cardSl} .icon-wrapper`;
 
-
+	console.log(icon);
 
 	return <style dangerouslySetInnerHTML={{
 		__html: `
