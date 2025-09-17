@@ -18,14 +18,15 @@ define( 'Q3Q4SCB_VERSION', isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_S
 define( 'Q3Q4SCB_DIR_URL', plugin_dir_url( __FILE__ ) );
 define( 'Q3Q4SCB_DIR_PATH', plugin_dir_path( __FILE__ ) );
 
-if( !class_exists( 'PREFIXPlugin' ) ){
-	class PREFIXPlugin{
+if( !class_exists( 'Q3Q4SERVICECARDPLUGIN' ) ){
+	class Q3Q4SERVICECARDPLUGIN{
 		function __construct(){
 			add_action( 'init', [ $this, 'onInit' ] );
 			add_filter('manage_q3q4_service_card_posts_columns', [$this, 'q3q4_cpt_callback']);
 			add_action('manage_q3q4_service_card_posts_custom_column', [$this, 'q3q4_manage_cpt_columns'], 10, 2);
-		    add_shortcode('service_card', [$this, 'service_card_shortcode']);
+		    add_shortcode('q3q4_service_card', [$this, 'q3q4_service_card_block_shortcode']);
 			add_action('admin_enqueue_scripts', [$this, 'sc_admin_enqueue_script']);
+			add_action('admin_menu', [$this,"q3q3_admin_menu_cb"]);
 	
 		}
 
@@ -87,15 +88,7 @@ if( !class_exists( 'PREFIXPlugin' ) ){
 
 		}
 
-		//custome column 
-		function q3q4_cpt_callback($column)
-		{
-			unset($column['date']);
-			$column['shortcode'] = 'ShortCode';
-			$column['date'] = 'Date';
-			$column['publisher'] = 'Publisher';
-			return $column;
-		}
+	
 
 		//column UI
 		function q3q4_manage_cpt_columns($column_name, $post_id)
@@ -111,47 +104,81 @@ if( !class_exists( 'PREFIXPlugin' ) ){
 			}
 		}
 
-			// Shortcode
-		function service_card_shortcode($atts)
-		{
-			$post_id = $atts['id'];
-			$post = get_post($post_id);
+		// Shortcode
 
-			if (!$post) {
-				return '';
-			}
-
-			if (post_password_required($post)) {
-				return get_the_password_form($post);
-			}
-
-			switch ($post->post_status) {
-				case 'publish':
-					return $this->displayContent($post);
-
-				case 'private':
-					if (current_user_can('read_private_posts')) {
-						return $this->displayContent($post);
+			function q3q4_service_card_block_shortcode($atts){
+				
+				if (!isset($atts['id'])) {
+					$attr_string = '';
+					foreach ($atts as $key => $value) {
+						$attr_string .= $key . '="' . esc_attr($value) . '" ';
 					}
-					return '';
+					$shortcode = '[bypass_audio_player ' . trim($attr_string) . ']';
+					return do_shortcode($shortcode);
+				}
 
-				case 'draft':
-				case 'pending':
-				case 'future':
-					if (current_user_can('edit_post', $post_id)) {
-						return $this->displayContent($post);
-					}
-					return '';
+				$post_id = $atts['id'];
+				$post = get_post( $post_id );
 
-				default:
+				if ( !$post ) {
 					return '';
+				}
+
+				if ( post_password_required( $post ) ) {
+					return get_the_password_form( $post );
+				}
+
+				switch ( $post->post_status ) {
+					case 'publish':
+						return $this->displayContent( $post );
+						
+					case 'private':
+						if (current_user_can('read_private_posts')) {
+							return $this->displayContent( $post );
+						}
+						return '';
+						
+					case 'draft':
+					case 'pending':
+					case 'future':
+						if ( current_user_can( 'edit_post', $post_id ) ) {
+							return $this->displayContent( $post );
+						}
+						return '';
+						
+					default:
+						return '';
+				}
 			}
-		}
-		function displayContent($post)
+
+			function displayContent( $post ){
+				$blocks = parse_blocks( $post->post_content );
+				return render_block( $blocks[0] );
+			}
+				//custome column 
+		function q3q4_cpt_callback($column)
 		{
-			$blocks = parse_blocks($post->post_content);
-			return render_block($blocks[0]);
+			unset($column['date']);
+			$column['shortcode'] = 'ShortCode';
+			$column['date'] = 'Date';
+			$column['publisher'] = 'Publisher';
+			return $column;
 		}
+
+		function q3q3_admin_menu_cb() {
+        add_submenu_page(
+        'edit.php?post_type=q3q4_service_card',
+        'Service Card Settings',
+        'settings',
+        'manage_options',
+        'q3q4_render_settings_page',
+        [$this,"q3q4_render_settings_page"],
+        90
+    );
+}
+function q3q4_render_settings_page(){
+	echo "Service Card Block Settings";
+}
 
 		//data enqueueshortcode
 		function sc_admin_enqueue_script()
@@ -160,10 +187,10 @@ if( !class_exists( 'PREFIXPlugin' ) ){
 
 			if ('q3q4_service_card' === $typenow) {
 				wp_enqueue_script('shortcode-js', Q3Q4SCB_DIR_URL . './build/shortcode.js', [], Q3Q4SCB_VERSION, true);
-				wp_enqueue_style('shortcode-css', Q3Q4SCB_DIR_URL . './build/shortcode.css', Q3Q4SCB_VERSION);
+				wp_enqueue_style('shortcode-css', Q3Q4SCB_DIR_URL . './build/shortcode.css');
 
 			}
 		}
 	}
-	new PREFIXPlugin();
+	new Q3Q4SERVICECARDPLUGIN();
 }

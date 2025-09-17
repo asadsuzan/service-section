@@ -1,6 +1,6 @@
 import React from 'react'
 import ServiceCard from './ServiceCard'
-import { Zap } from 'lucide-react'
+
 
 const App = ({ attributes, isBackend = false, setAttributes = () => { } }) => {
     const { services, theme, styles } = attributes || {}

@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		createRoot(blockNameEl).render(<>
 			<Style attributes={attributes} id={blockNameEl.id} />
 
-			<App />
+			<App {...{ attributes }} isBackend={false} />
 		</>);
 
 		blockNameEl?.removeAttribute('data-attributes');
