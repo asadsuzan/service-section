@@ -2,11 +2,12 @@ import { mobileBreakpoint, tabBreakpoint } from '../../../../bpl-tools-main/util
 import { getBackgroundCSS, getBorderCSS, getBoxCSS, getColorsCSS, getMultiShadowCSS, getTypoCSS } from "../../../../bpl-tools-main/utils/getCSS"
 const Style = ({ attributes = {}, id }) => {
 	const { theme = 'vertical', styles = {} } = attributes
-	const { body, columns, title, description, icon } = styles
+	const { body, columns, title, description, icon, diagonal } = styles
 	const mainSl = `#${id}`;
 	const blockSl = `${mainSl} .q3q4_wrapper`;
 	const gridSl = `${blockSl} .cards-grid`;
 	const cardSl = `${gridSl} .card-${theme}`;
+	const diagonalShapeSl = `${cardSl} .diagonal-bg`;
 	const titleSl = `${cardSl} .card-title`;
 	const descriptionSl = `${cardSl} .card-description`;
 	const iconWrapperSl = `${cardSl} .icon-wrapper`;
@@ -40,10 +41,15 @@ const Style = ({ attributes = {}, id }) => {
 			text-align:${body?.align};
 		}
 
+		
+
 		${cardSl}:hover{
 		box-shadow:${getMultiShadowCSS(body?.hover?.shadow)};
 		}
-
+        ${diagonalShapeSl}{
+		${getBackgroundCSS(diagonal?.bg)}
+		}
+	
 		${titleSl}{
 		${getColorsCSS(title?.colors)}
 		}
@@ -54,6 +60,10 @@ const Style = ({ attributes = {}, id }) => {
 
 		${iconWrapperSl}{
 		${getBackgroundCSS(icon?.bg)}
+		}
+
+		${iconWrapperSl}::after{
+		${getBackgroundCSS(icon?.bar?.bg)}
 		}
 	
          

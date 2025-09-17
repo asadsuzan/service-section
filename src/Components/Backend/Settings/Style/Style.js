@@ -6,8 +6,8 @@ import { updateData } from '../../../../../../bpl-tools-main/utils/functions';
 import { BorderControl } from '../../../../../../bpl-tools-main/Components/Deprecated';
 
 const Style = ({ attributes = {}, setAttributes, device }) => {
-  const { styles = {} } = attributes;
-  const { columns, body, title, description, icon } = styles
+  const { styles = {}, theme } = attributes;
+  const { columns, body, title, description, icon, diagonal } = styles
 
   return (
     <>
@@ -135,6 +135,35 @@ const Style = ({ attributes = {}, setAttributes, device }) => {
             })
           }
         />
+
+        {
+
+          theme === 'horizontal' ? <Background
+            className="mt10"
+            label="Icon Bar Background"
+            value={icon?.bar?.bg}
+            onChange={(v) =>
+              setAttributes({
+                styles: updateData(styles, v, 'icon', 'bar', 'bg')
+              })
+            }
+          /> : null
+
+        }
+        {
+
+          theme === 'diagonal' ? <Background
+            className="mt10"
+            label="Diagonal Shape Background"
+            value={diagonal?.bg}
+            onChange={(v) =>
+              setAttributes({
+                styles: updateData(styles, v, "diagonal", 'bg')
+              })
+            }
+          /> : null
+
+        }
 
         {/* icon color  */}
 
