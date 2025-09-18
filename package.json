@@ -13,7 +13,7 @@
 		"format": "wp-scripts format",
 		"start": "wp-scripts start --webpack-copy-php",
 		"build": "wp-scripts build --webpack-copy-php",
-		"i18n-pot": "wp i18n make-pot . languages/q3q4.pot --exclude=\"src\" && cp ./languages/q3q4.pot ./languages/q3q4-en_US.po",
+		"i18n-pot": "wp i18n make-pot . languages/services-card-block.pot --exclude=\"src\" && cp ./languages/services-card-block.pot ./languages/services-card-block-en_US.po",
 		"i18n-json": "wp i18n make-json languages/ --no-purge",
 		"i18n-mo": "wp i18n make-mo languages/",
 		"i18n": "npm run i18n-pot && npm run i18n-json && npm run i18n-mo",

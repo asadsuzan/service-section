@@ -1,26 +1,19 @@
 $primaryColor: #4527a4;
 
 
-.wp-block-q3q4-services-cards {
+.wp-block-services-card-block-services-cards {
 	box-sizing: border-box;
 
 	* {
 		box-sizing: border-box;
 	}
 
-
-	img {
-		width: 100%;
-		max-width: 100%;
-	}
-
-
 	.q3q4_wrapper {
 
 		.cards-grid {
 			display: grid;
 
-			.q3q4-service {
+			.services-card-block-service {
 				transition: all 0.3s ease;
 				overflow: hidden;
 
@@ -187,15 +180,5 @@ $primaryColor: #4527a4;
 
 
 	}
-
-
-
-
-
-
-
-
-
-
 
 }

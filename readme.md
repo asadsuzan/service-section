@@ -1,10 +1,10 @@
 ## Plugin Setup
 1. Find an appropriate [plugin-slug](https://wordpress.org/plugins/) according to the solution of the plugin.
 2. Write the min 4-5 character prefix, plugin name, short description(up to 150 chars), long description (min 3-4 para), keywords(min 4), block name, and block description in a temporary notebook.
-2. If your block is not part of `q3q4`, then the text domain should be your `plugin-slug`.
+2. If your block is not part of `services-card-block`, then the text domain should be your `plugin-slug`.
 4. Apply 1st and 2nd list data to this template with case sensitivity: uppercase for uppercase, lowercase for lowercase, title case for title case, and camel case for camel case. (for the block name try different way to search (blockname, blockName, BlockName, Block Name, block name))
 5. Complete the `readme.txt` file.
-6. The main element is `.wp-block-q3q4-{blockname}`, and its immediate child is `.bBlocksBlockName`. Do not apply width or columns for the main element.
+6. The main element is `.wp-block-services-card-block-{blockname}`, and its immediate child is `.bBlocksBlockName`. Do not apply width or columns for the main element.
 7. Write appropriate class and ID names for the elements.
 8. Add the initial roadmap for the plugin in the `todo.txt`.
 9. If you skip one of these, we will not provide any support for the project.

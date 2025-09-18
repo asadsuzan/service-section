@@ -1,39 +1,35 @@
 module.exports = {
 	settings: {
 		react: {
-			version: 'detect'
-		}
+			version: 'detect',
+		},
 	},
 	env: {
 		browser: true,
 		commonjs: true,
 		es6: true,
-		node: true
+		node: true,
 	},
-	extends: [
-		'eslint:recommended',
-		'plugin:react/recommended'
-	],
+	extends: [ 'eslint:recommended', 'plugin:react/recommended' ],
 	globals: {
 		wp: 'readonly',
-		jQuery: 'readonly'
+		jQuery: 'readonly',
 	},
 	parserOptions: {
 		ecmaFeatures: {
-			jsx: true
+			jsx: true,
 		},
 		ecmaVersion: 12,
-		sourceType: 'module'
+		sourceType: 'module',
 	},
-	plugins: [
-		'react'
-	],
+	plugins: [ 'react' ],
 	rules: {
 		'func-names': 'off',
 		'no-console': 'off',
 		'no-unused-vars': 'warn',
 		'react/jsx-filename-extension': [
-			1, { 'extensions': ['.js', '.jsx'] }
+			1,
+			{ extensions: [ '.js', '.jsx' ] },
 		],
 		'react/prop-types': 'off',
 		'react/react-in-jsx-scope': 'off',
@@ -42,5 +38,5 @@ module.exports = {
 		'no-unsafe-optional-chaining': 'off',
 		'object-shorthand': 'warn',
 		'class-methods-use-this': 'off',
-	}
-}
+	},
+};

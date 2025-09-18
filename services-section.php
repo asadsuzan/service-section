@@ -7,7 +7,7 @@
  * Author URI: https://bplugins.com
  * License: GPLv3
  * License URI: https://www.gnu.org/licenses/gpl-3.0.txt
- * Text Domain: q3q4
+ * Text Domain: services-card-block
  */
 
 // ABS PATH
@@ -37,39 +37,39 @@ if( !class_exists( 'Q3Q4SERVICECARDPLUGIN' ) ){
 				'label' => 'Service card',
 				'description' => 'this is Service_card and seo friendly card',
 				'labels' => [
-					'name' => __('Service_card', 'q3q4'),
-					'singular_name' => __('Service_card', 'q3q4'),
-					'add_new' => __('Add New', 'q3q4'),
-					'add_new_item' => __('Add New Service', 'q3q4'),
-					'edit_item' => __('Edit Service_card', 'q3q4'),
-					'new_item' => __('New Service_card', 'q3q4'),
-					'view_item' => __('View Service_card', 'q3q4'),
-					'view_items' => __('View Service_card', 'q3q4'),
-					'search_items' => __('Search Service_card', 'q3q4'),
-					'not_found' => __('No Service_card found.', 'q3q4'),
-					'not_found_in_trash' => __('No Service_card found in Trash.', 'q3q4'),
-					'parent_item_colon' => __('Parent Service_card:', 'q3q4'),
-					'all_items' => __('All Service', 'q3q4'),
-					'archives' => __('Service_card Archives', 'q3q4'),
-					'attributes' => __('Service_card Attributes', 'q3q4'),
-					'insert_into_item' => __('Insert into Service_card', 'q3q4'),
-					'uploaded_to_this_item' => __('Uploaded to this Service_card', 'q3q4'),
-					'featured_image' => __('Featured Image', 'q3q4'),
-					'set_featured_image' => __('Set featured image', 'q3q4'),
-					'remove_featured_image' => __('Remove featured image', 'q3q4'),
-					'use_featured_image' => __('Use as featured image', 'q3q4'),
-					'menu_name' => __('Service Card', 'q3q4'),
-					'filter_items_list' => __('Filter Service_card list', 'q3q4'),
-					'filter_by_date' => __('Filter by date', 'q3q4'),
-					'items_list_navigation' => __('Service_card list navigation', 'q3q4'),
-					'items_list' => __('Service_card list', 'q3q4'),
-					'item_published' => __('Service_card published.', 'q3q4'),
-					'item_published_privately' => __('Service_card published privately.', 'q3q4'),
-					'item_reverted_to_draft' => __('Service_card reverted to draft.', 'q3q4'),
-					'item_scheduled' => __('Service_card scheduled.', 'q3q4'),
-					'item_updated' => __('Service_card updated.', 'q3q4'),
-					'item_link' => __('Service_card Link', 'q3q4'),
-					'item_link_description' => __('A link to an Service_card.', 'q3q4'),
+					'name' => __('Service_card', 'services-card-block'),
+					'singular_name' => __('Service_card', 'services-card-block'),
+					'add_new' => __('Add New', 'services-card-block'),
+					'add_new_item' => __('Add New Service', 'services-card-block'),
+					'edit_item' => __('Edit Service_card', 'services-card-block'),
+					'new_item' => __('New Service_card', 'services-card-block'),
+					'view_item' => __('View Service_card', 'services-card-block'),
+					'view_items' => __('View Service_card', 'services-card-block'),
+					'search_items' => __('Search Service_card', 'services-card-block'),
+					'not_found' => __('No Service_card found.', 'services-card-block'),
+					'not_found_in_trash' => __('No Service_card found in Trash.', 'services-card-block'),
+					'parent_item_colon' => __('Parent Service_card:', 'services-card-block'),
+					'all_items' => __('All Service', 'services-card-block'),
+					'archives' => __('Service_card Archives', 'services-card-block'),
+					'attributes' => __('Service_card Attributes', 'services-card-block'),
+					'insert_into_item' => __('Insert into Service_card', 'services-card-block'),
+					'uploaded_to_this_item' => __('Uploaded to this Service_card', 'services-card-block'),
+					'featured_image' => __('Featured Image', 'services-card-block'),
+					'set_featured_image' => __('Set featured image', 'services-card-block'),
+					'remove_featured_image' => __('Remove featured image', 'services-card-block'),
+					'use_featured_image' => __('Use as featured image', 'services-card-block'),
+					'menu_name' => __('Service Card', 'services-card-block'),
+					'filter_items_list' => __('Filter Service_card list', 'services-card-block'),
+					'filter_by_date' => __('Filter by date', 'services-card-block'),
+					'items_list_navigation' => __('Service_card list navigation', 'services-card-block'),
+					'items_list' => __('Service_card list', 'services-card-block'),
+					'item_published' => __('Service_card published.', 'services-card-block'),
+					'item_published_privately' => __('Service_card published privately.', 'services-card-block'),
+					'item_reverted_to_draft' => __('Service_card reverted to draft.', 'services-card-block'),
+					'item_scheduled' => __('Service_card scheduled.', 'services-card-block'),
+					'item_updated' => __('Service_card updated.', 'services-card-block'),
+					'item_link' => __('Service_card Link', 'services-card-block'),
+					'item_link_description' => __('A link to an Service_card.', 'services-card-block'),
 				],
 				'public' => true, //frontend or backend show
 				"publicly_queryable" => false, //view link hidden
@@ -79,7 +79,7 @@ if( !class_exists( 'Q3Q4SERVICECARDPLUGIN' ) ){
 				'menu_position' => 79, //position type
 				'menu_icon' => 'dashicons-admin-tools', //icon
 				'supports' => array('title', 'editor', 'revisions'),
-				'template' => [['q3q4/services-cards']],  //open templated
+				'template' => [['services-card-block/services-cards']],  //open templated
 				'template_lock' => 'all', //lock
 				'show_in_nav_menus' => true,
 				'show_in_admin_bar' => true,
@@ -187,7 +187,7 @@ function q3q4_render_settings_page(){
 
 			if ('q3q4_service_card' === $typenow) {
 				wp_enqueue_script('shortcode-js', Q3Q4SCB_DIR_URL . './build/shortcode.js', [], Q3Q4SCB_VERSION, true);
-				wp_enqueue_style('shortcode-css', Q3Q4SCB_DIR_URL . './build/shortcode.css');
+				wp_enqueue_style('shortcode-css', Q3Q4SCB_DIR_URL . './build/shortcode.css',[],Q3Q4SCB_VERSION );
 
 			}
 		}
@@ -195,6 +195,7 @@ function q3q4_render_settings_page(){
 	new Q3Q4SERVICECARDPLUGIN();
 }
 
+// Plugin activation + redirect logic
 // Plugin activation + redirect logic
 register_activation_hook( __FILE__, 'q3q4_plugin_activate' );
 function q3q4_plugin_activate() {
@@ -206,11 +207,18 @@ function q3q4_plugin_redirect() {
     if ( get_transient( '_q3q4_do_activation_redirect' ) ) {
         delete_transient( '_q3q4_do_activation_redirect' );
 
-        if ( isset( $_GET['activate-multi'] ) ) {
+        // Skip redirect if multiple plugins activated
+        if ( isset( $_GET['activate-multi'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
             return;
         }
 
-        wp_safe_redirect( admin_url( 'edit.php?post_type=q3q4_service_card&page=q3q4_render_settings_page' ) );
+        // Generate a nonce-protected URL for the settings page
+        $redirect_url = wp_nonce_url(
+            admin_url( 'edit.php?post_type=q3q4_service_card&page=q3q4_render_settings_page' ),
+            'q3q4_settings_redirect'
+        );
+
+        wp_safe_redirect( $redirect_url );
         exit;
     }
 }

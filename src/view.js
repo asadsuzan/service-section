@@ -3,17 +3,21 @@ import './style.scss';
 import Style from './Components/Common/Style';
 import App from './Components/Common/App';
 
-document.addEventListener('DOMContentLoaded', () => {
-	const blockNameEls = document.querySelectorAll('.wp-block-q3q4-services-cards');
-	blockNameEls.forEach(blockNameEl => {
-		const attributes = JSON.parse(blockNameEl.dataset.attributes);
+document.addEventListener( 'DOMContentLoaded', () => {
+	const blockNameEls = document.querySelectorAll(
+		'.wp-block-services-card-block-services-cards'
+	);
+	blockNameEls.forEach( ( blockNameEl ) => {
+		const attributes = JSON.parse( blockNameEl.dataset.attributes );
 
-		createRoot(blockNameEl).render(<>
-			<Style attributes={attributes} id={blockNameEl.id} />
+		createRoot( blockNameEl ).render(
+			<>
+				<Style attributes={ attributes } id={ blockNameEl.id } />
 
-			<App {...{ attributes }} isBackend={false} />
-		</>);
+				<App { ...{ attributes } } isBackend={ false } />
+			</>
+		);
 
-		blockNameEl?.removeAttribute('data-attributes');
-	});
-});
+		blockNameEl?.removeAttribute( 'data-attributes' );
+	} );
+} );

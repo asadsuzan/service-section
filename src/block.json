@@ -1,19 +1,13 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
-	"name": "q3q4/services-cards",
+	"name": "services-card-block/services-cards",
 	"version": "1.0.0",
 	"title": "Services cards",
 	"category": "design",
 	"description": "A services cards block.",
-	"keywords": [
-		"serevice",
-		"card",
-		"service card",
-		"service-card",
-		"cards"
-	],
-	"textdomain": "q3q4",
+	"keywords": [ "serevice", "card", "service card", "service-card", "cards" ],
+	"textdomain": "services-card-block",
 	"attributes": {
 		"alignment": {
 			"type": "string",
@@ -156,10 +150,7 @@
 		}
 	},
 	"supports": {
-		"align": [
-			"wide",
-			"full"
-		],
+		"align": [ "wide", "full" ],
 		"html": false
 	},
 	"example": {

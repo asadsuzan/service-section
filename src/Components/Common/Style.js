@@ -1,73 +1,83 @@
-import { mobileBreakpoint, tabBreakpoint } from '../../../../bpl-tools-main/utils/data';
-import { getBackgroundCSS, getBorderCSS, getBoxCSS, getColorsCSS, getMultiShadowCSS, getTypoCSS } from "../../../../bpl-tools-main/utils/getCSS"
-const Style = ({ attributes = {}, id }) => {
-	let { theme = 'default', styles = {} } = attributes
-	if (theme === 'default') {
-		theme = 'vertical'
+import {
+	mobileBreakpoint,
+	tabBreakpoint,
+} from '../../../../bpl-tools/utils/data';
+import {
+	getBackgroundCSS,
+	getBorderCSS,
+	getBoxCSS,
+	getColorsCSS,
+	getMultiShadowCSS,
+	getTypoCSS,
+} from '../../../../bpl-tools/utils/getCSS';
+const Style = ( { attributes = {}, id } ) => {
+	let { theme = 'default', styles = {} } = attributes;
+	if ( theme === 'default' ) {
+		theme = 'vertical';
 	}
-	const { body, columns, title, description, icon, diagonal } = styles
-	const mainSl = `#${id}`;
-	const blockSl = `${mainSl} .q3q4_wrapper`;
-	const gridSl = `${blockSl} .cards-grid`;
+	const { body, columns, title, description, icon, diagonal } = styles;
+	const mainSl = `#${ id }`;
+	const blockSl = `${ mainSl } .q3q4_wrapper`;
+	const gridSl = `${ blockSl } .cards-grid`;
 
-	const cardSl = `${gridSl} .card-${theme}`;
-	const diagonalShapeSl = `${cardSl} .diagonal-bg`;
-	const titleSl = `${cardSl} .card-title`;
-	const descriptionSl = `${cardSl} .card-description`;
-	const iconWrapperSl = `${cardSl} .icon-wrapper`;
+	const cardSl = `${ gridSl } .card-${ theme }`;
+	const diagonalShapeSl = `${ cardSl } .diagonal-bg`;
+	const titleSl = `${ cardSl } .card-title`;
+	const descriptionSl = `${ cardSl } .card-description`;
+	const iconWrapperSl = `${ cardSl } .icon-wrapper`;
+
+	return (
+		<style
+			dangerouslySetInnerHTML={ {
+				__html: `
+		    ${ getTypoCSS( '', title?.typo )?.googleFontLink } 
+		    ${ getTypoCSS( titleSl, title?.typo )?.styles } 
+
+		    ${ getTypoCSS( '', description?.typo )?.googleFontLink } 
+		    ${ getTypoCSS( descriptionSl, description?.typo )?.styles } 
 
 
-
-	return <style dangerouslySetInnerHTML={{
-		__html: `
-		    ${getTypoCSS("", title?.typo)?.googleFontLink} 
-		    ${getTypoCSS(titleSl, title?.typo)?.styles} 
-
-		    ${getTypoCSS("", description?.typo)?.googleFontLink} 
-		    ${getTypoCSS(descriptionSl, description?.typo)?.styles} 
-
-
-	   ${gridSl}{
+	   ${ gridSl }{
 	   
-			grid-template-columns: repeat(${columns?.desktop}, 1fr);
-			row-gap: ${columns?.gapX};
-			column-gap: ${columns?.gapY};
+			grid-template-columns: repeat(${ columns?.desktop }, 1fr);
+			row-gap: ${ columns?.gapX };
+			column-gap: ${ columns?.gapY };
 	 }
 
 
 
 		
-		${cardSl}{
-			${getBackgroundCSS(body?.bg)}
-			padding:${getBoxCSS(body?.padding?.desktop)};
-			box-shadow:${getMultiShadowCSS(body?.shadow)};
-			${getBorderCSS(body?.border)}
-			text-align:${body?.align};
+		${ cardSl }{
+			${ getBackgroundCSS( body?.bg ) }
+			padding:${ getBoxCSS( body?.padding?.desktop ) };
+			box-shadow:${ getMultiShadowCSS( body?.shadow ) };
+			${ getBorderCSS( body?.border ) }
+			text-align:${ body?.align };
 		}
 
 		
 
-		${cardSl}:hover{
-		box-shadow:${getMultiShadowCSS(body?.hover?.shadow)};
+		${ cardSl }:hover{
+		box-shadow:${ getMultiShadowCSS( body?.hover?.shadow ) };
 		}
-        ${diagonalShapeSl}{
-		${getBackgroundCSS(diagonal?.bg)}
+        ${ diagonalShapeSl }{
+		${ getBackgroundCSS( diagonal?.bg ) }
 		}
 	
-		${titleSl}{
-		${getColorsCSS(title?.colors)}
+		${ titleSl }{
+		${ getColorsCSS( title?.colors ) }
 		}
 
-		${descriptionSl}{
-		${getColorsCSS(description?.colors)}
+		${ descriptionSl }{
+		${ getColorsCSS( description?.colors ) }
 		}
 
-		${iconWrapperSl}{
-		${getBackgroundCSS(icon?.bg)}
+		${ iconWrapperSl }{
+		${ getBackgroundCSS( icon?.bg ) }
 		}
 
-		${iconWrapperSl}::after{
-		${getBackgroundCSS(icon?.bar?.bg)}
+		${ iconWrapperSl }::after{
+		${ getBackgroundCSS( icon?.bar?.bg ) }
 		}
 	
          
@@ -75,23 +85,23 @@ const Style = ({ attributes = {}, id }) => {
 
 
     
-	    ${tabBreakpoint}{
+	    ${ tabBreakpoint }{
 
-		${gridSl}{
-		 grid-template-columns: repeat(${columns?.tablet}, 1fr);
+		${ gridSl }{
+		 grid-template-columns: repeat(${ columns?.tablet }, 1fr);
 		}
-        ${cardSl}{
-			padding:${getBoxCSS(body?.padding?.tablet)};
+        ${ cardSl }{
+			padding:${ getBoxCSS( body?.padding?.tablet ) };
 		 }
 
         }
 
-		  ${mobileBreakpoint} {
-		  ${gridSl}{
-		  grid-template-columns: repeat(${columns?.mobile}, 1fr);
+		  ${ mobileBreakpoint } {
+		  ${ gridSl }{
+		  grid-template-columns: repeat(${ columns?.mobile }, 1fr);
 		  }
-		  ${cardSl}{
-		  padding:${getBoxCSS(body?.padding?.mobile)};
+		  ${ cardSl }{
+		  padding:${ getBoxCSS( body?.padding?.mobile ) };
 		  }
 		}
 
@@ -104,6 +114,9 @@ const Style = ({ attributes = {}, id }) => {
 
 
 
-	`}} />;
-}
+	`,
+			} }
+		/>
+	);
+};
 export default Style;
