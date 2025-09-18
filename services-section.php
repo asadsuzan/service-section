@@ -194,3 +194,23 @@ function q3q4_render_settings_page(){
 	}
 	new Q3Q4SERVICECARDPLUGIN();
 }
+
+// Plugin activation + redirect logic
+register_activation_hook( __FILE__, 'q3q4_plugin_activate' );
+function q3q4_plugin_activate() {
+    set_transient( '_q3q4_do_activation_redirect', true, 30 );
+}
+
+add_action( 'admin_init', 'q3q4_plugin_redirect' );
+function q3q4_plugin_redirect() {
+    if ( get_transient( '_q3q4_do_activation_redirect' ) ) {
+        delete_transient( '_q3q4_do_activation_redirect' );
+
+        if ( isset( $_GET['activate-multi'] ) ) {
+            return;
+        }
+
+        wp_safe_redirect( admin_url( 'edit.php?post_type=q3q4_service_card&page=q3q4_render_settings_page' ) );
+        exit;
+    }
+}
