@@ -3,9 +3,11 @@ import Settings from "./Settings/Settings";
 import Style from "../Common/Style";
 import App from '../Common/App';
 import { withSelect } from "@wordpress/data";
+import ClipBoard from '../../shortcode/clipBoard';
 
 const Edit = (props) => {
-  const { attributes, setAttributes, clientId, device } = props;
+  const { attributes, setAttributes, clientId, device, postType, postId } = props;
+  console.log(postType, postId);
 
   return (
     <>
@@ -14,6 +16,9 @@ const Edit = (props) => {
       <div {...useBlockProps()}>
         <Style attributes={attributes} id={`block-${clientId}`} device={device} />
 
+        {postType == "q3q4_service_card" && (
+          <ClipBoard shortcode={`[q3q4_service_card id=${postId}]`} />
+        )}
         <App {...{ attributes }} isBackend={true} setAttributes={setAttributes} />
       </div>
     </>
@@ -21,9 +26,11 @@ const Edit = (props) => {
 };
 
 export default withSelect((select) => {
-  const { getDeviceType } = select("core/editor");
+  const { getDeviceType, getCurrentPostId, getCurrentPostType } = select("core/editor");
   return {
 
     device: getDeviceType()?.toLowerCase(),
+    postType: getCurrentPostType(),
+    postId: getCurrentPostId(),
   };
 })(Edit);
