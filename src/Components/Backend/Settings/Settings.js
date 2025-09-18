@@ -6,9 +6,11 @@ import { tabController } from '../../../../../bpl-tools-main/utils/functions';
 import { generalStyleTabs } from '../../../utils/options';
 import General from './General/General';
 import Style from './Style/Style';
+import { BplBlockPreview } from '../../../../../bpl-tools-main/Components';
+import { themes } from '../../../utils/themes';
 
-const Settings = ({ attributes, setAttributes, device }) => {
-	const { alignment } = attributes;
+const Settings = ({ attributes, setAttributes, device, clientId }) => {
+	const { alignment, theme } = attributes;
 
 	return <>
 		<InspectorControls>
@@ -35,6 +37,16 @@ const Settings = ({ attributes, setAttributes, device }) => {
 				{ title: __('Block Name in center', 'textdomain'), align: 'center', icon: 'align-center' },
 				{ title: __('Block Name in right', 'textdomain'), align: 'right', icon: 'align-right' }
 			]} />
+
+
+
+
+			<BplBlockPreview
+				blocks={themes()}
+				clientId={clientId}
+				value={theme}
+
+			/>
 
 		</BlockControls>
 	</>;

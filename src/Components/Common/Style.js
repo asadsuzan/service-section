@@ -1,18 +1,22 @@
 import { mobileBreakpoint, tabBreakpoint } from '../../../../bpl-tools-main/utils/data';
 import { getBackgroundCSS, getBorderCSS, getBoxCSS, getColorsCSS, getMultiShadowCSS, getTypoCSS } from "../../../../bpl-tools-main/utils/getCSS"
 const Style = ({ attributes = {}, id }) => {
-	const { theme = 'vertical', styles = {} } = attributes
+	let { theme = 'default', styles = {} } = attributes
+	if (theme === 'default') {
+		theme = 'vertical'
+	}
 	const { body, columns, title, description, icon, diagonal } = styles
 	const mainSl = `#${id}`;
 	const blockSl = `${mainSl} .q3q4_wrapper`;
 	const gridSl = `${blockSl} .cards-grid`;
+
 	const cardSl = `${gridSl} .card-${theme}`;
 	const diagonalShapeSl = `${cardSl} .diagonal-bg`;
 	const titleSl = `${cardSl} .card-title`;
 	const descriptionSl = `${cardSl} .card-description`;
 	const iconWrapperSl = `${cardSl} .icon-wrapper`;
 
-	console.log(icon);
+
 
 	return <style dangerouslySetInnerHTML={{
 		__html: `

@@ -21,7 +21,7 @@
 		},
 		"theme": {
 			"type": "string",
-			"default": "vertical"
+			"default": "default"
 		},
 		"activeCard": {
 			"type": "number",

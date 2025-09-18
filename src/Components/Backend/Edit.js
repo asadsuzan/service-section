@@ -7,7 +7,7 @@ import ClipBoard from '../../shortcode/clipBoard';
 
 const Edit = (props) => {
   const { attributes, setAttributes, clientId, device, postType, postId } = props;
-  console.log(postType, postId);
+
 
   return (
     <>
@@ -28,7 +28,6 @@ const Edit = (props) => {
 export default withSelect((select) => {
   const { getDeviceType, getCurrentPostId, getCurrentPostType } = select("core/editor");
   return {
-
     device: getDeviceType()?.toLowerCase(),
     postType: getCurrentPostType(),
     postId: getCurrentPostId(),
