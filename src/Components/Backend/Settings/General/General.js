@@ -1,13 +1,14 @@
 import { __ } from '@wordpress/i18n';
-import { PanelBody, SelectControl } from '@wordpress/components';
+import { PanelBody, SelectControl, ToggleControl } from '@wordpress/components';
 import { ItemsPanel } from '../../../../../../bpl-tools/Components';
 import serviceItemsPanel from '../../itemsPanel/serviceItemsPanel';
 import { themeSwitch } from '../../../../utils/functions';
 import { themeOptions } from '../../../../utils/options';
+import { updateData } from '../../../../../../bpl-tools/utils/functions';
 
 
 const General = ({ attributes, setAttributes }) => {
-	const { activeCard, theme } = attributes || {};
+	const { activeCard, theme, options } = attributes || {};
 
 	return (
 		<>
@@ -46,6 +47,38 @@ const General = ({ attributes, setAttributes }) => {
 					title="title"
 					itemLabel="Service"
 				/>
+			</PanelBody>
+
+			<PanelBody
+				className="bPlPanelBody"
+				title={__('Options', 'b-blocks')}
+				initialOpen={false}
+			>
+				<ToggleControl
+					label="Show Icon"
+					checked={options?.showIcon ?? true}
+					onChange={(v) =>
+						setAttributes({
+							options: updateData(options, v, 'showIcon'),
+						})
+					}
+				/>
+				{
+					theme === "diagonal" && <ToggleControl
+						className='mt20'
+						label="Show Accenrtt Line"
+						checked={options?.showAccentLine ?? true}
+						onChange={(v) =>
+							setAttributes({
+								options: updateData(options, v, 'showAccentLine'),
+							})
+						}
+					/>
+				}
+
+
+
+
 			</PanelBody>
 		</>
 	);

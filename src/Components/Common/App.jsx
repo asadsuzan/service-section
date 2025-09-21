@@ -2,7 +2,7 @@ import React from 'react';
 import ServiceCard from './ServiceCard';
 
 const App = ( { attributes, isBackend = false, setAttributes = () => {} } ) => {
-	const { services, theme, styles } = attributes || {};
+	const { services, theme, styles ,options} = attributes || {};
 
 	return (
 		<div className="q3q4_wrapper">
@@ -18,8 +18,8 @@ const App = ( { attributes, isBackend = false, setAttributes = () => {} } ) => {
 						setAttributes={ setAttributes }
 						variant={ theme }
 						styles={ styles }
-						showIcon={service?.showIcon ?? true}
-						showAccentLine={service?.showAccentLine ?? false}
+						showIcon={options?.showIcon ?? true}
+						showAccentLine={options?.showAccentLine ?? false}
 					/>
 				) ) }
 			</div>

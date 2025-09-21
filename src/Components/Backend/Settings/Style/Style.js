@@ -15,8 +15,9 @@ import { updateData } from '../../../../../../bpl-tools/utils/functions';
 import { BorderControl } from '../../../../../../bpl-tools/Components/Deprecated';
 
 const Style = ({ attributes = {}, setAttributes, device }) => {
-	const { styles = {}, theme } = attributes;
+	const { styles = {}, theme, options } = attributes;
 	const { columns, body, title, description, icon, diagonal } = styles;
+
 
 	return (
 		<>
@@ -156,87 +157,90 @@ const Style = ({ attributes = {}, setAttributes, device }) => {
 			</PanelBody>
 
 			{/* icon settings  */}
-			<PanelBody
-				className='bPlPanelBody '
-				title={__('Icon', 'services-card-block')}
-				initialOpen={false}
+			{
+				options?.showIcon ? <PanelBody
+					className='bPlPanelBody '
+					title={__('Icon', 'services-card-block')}
+					initialOpen={false}
 
-			>
-				{ /* icon wrapper background  */}
-				<Background
-					className="mt10"
-					label="Wrapper Background"
-					value={icon?.bg}
-					onChange={(v) =>
-						setAttributes({
-							styles: updateData(styles, v, 'icon', 'bg'),
-						})
-					}
-				/>
-
-				{theme === 'horizontal' ? (
+				>
+					{ /* icon wrapper background  */}
 					<Background
 						className="mt10"
-						label="Skew Background"
-						value={icon?.bar?.bg}
+						label="Wrapper Background"
+						value={icon?.bg}
 						onChange={(v) =>
 							setAttributes({
-								styles: updateData(
-									styles,
-									v,
-									'icon',
-									'bar',
-									'bg'
-								),
+								styles: updateData(styles, v, 'icon', 'bg'),
 							})
 						}
 					/>
-				) : null}
-				{theme === 'diagonal' ? (
-					<Background
-						className="mt10"
-						label="Diagonal Shape Background"
-						value={diagonal?.bg}
+
+					{theme === 'horizontal' ? (
+						<Background
+							className="mt10"
+							label="Skew Background"
+							value={icon?.bar?.bg}
+							onChange={(v) =>
+								setAttributes({
+									styles: updateData(
+										styles,
+										v,
+										'icon',
+										'bar',
+										'bg'
+									),
+								})
+							}
+						/>
+					) : null}
+					{theme === 'diagonal' ? (
+						<Background
+							className="mt10"
+							label="Diagonal Shape Background"
+							value={diagonal?.bg}
+							onChange={(v) =>
+								setAttributes({
+									styles: updateData(
+										styles,
+										v,
+										'diagonal',
+										'bg'
+									),
+								})
+							}
+						/>
+					) : null}
+
+					{ /* icon color  */}
+
+					<ColorControl
+						className="mt20"
+						label="Color"
+						value={icon?.color}
 						onChange={(v) =>
 							setAttributes({
-								styles: updateData(
-									styles,
-									v,
-									'diagonal',
-									'bg'
-								),
+								styles: updateData(styles, v, 'icon', 'color'),
 							})
 						}
 					/>
-				) : null}
+					{ /* icon size  */}
 
-				{ /* icon color  */}
+					<RangeControl
+						className="mt20"
+						label="Size"
+						value={icon?.size}
+						onChange={(v) =>
+							setAttributes({
+								styles: updateData(styles, v, 'icon', 'size'),
+							})
+						}
+						max={100}
+						min={1}
+					/>
+				</PanelBody> : null
+			}
 
-				<ColorControl
-					className="mt20"
-					label="Color"
-					value={icon?.color}
-					onChange={(v) =>
-						setAttributes({
-							styles: updateData(styles, v, 'icon', 'color'),
-						})
-					}
-				/>
-				{ /* icon size  */}
-
-				<RangeControl
-					className="mt20"
-					label="Size"
-					value={icon?.size}
-					onChange={(v) =>
-						setAttributes({
-							styles: updateData(styles, v, 'icon', 'size'),
-						})
-					}
-					max={100}
-					min={1}
-				/>
-			</PanelBody>
 
 			{/* title settings   */}
 			<PanelBody
@@ -273,6 +277,18 @@ const Style = ({ attributes = {}, setAttributes, device }) => {
 					className='mt20'
 					label={__('Padding', 'services-card-block')}
 					values={title?.padding?.[device]}
+					defaultValues={{
+						top: "0px",
+						right: "0px",
+						bottom: "0px",
+						left: "0px"
+					}}
+					resetValues={{
+						top: "0px",
+						right: "0px",
+						bottom: "0px",
+						left: "0px"
+					}}
 					onChange={(v) => setAttributes({ styles: updateData(styles, v, 'title', 'padding', device) })}
 				/>
 

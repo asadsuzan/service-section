@@ -1,7 +1,11 @@
 import { produce } from 'immer';
 
-export const themeSwitch = (theme = 'vertical', attributes) =>
-	produce(attributes, (draft) => {
+export const themeSwitch = (theme = 'vertical', attributes) => {
+	if (theme === 'default') {
+		theme = 'vertical';
+	}
+
+	return produce(attributes, (draft) => {
 		draft['theme'] = theme;
 
 		switch (theme) {
@@ -460,6 +464,9 @@ export const themeSwitch = (theme = 'vertical', attributes) =>
 				break;
 		}
 	});
+}
+
+
 
 export const addSvgAttrs = (svgString, attrs = {}) => {
 	let extra = Object.entries(attrs)

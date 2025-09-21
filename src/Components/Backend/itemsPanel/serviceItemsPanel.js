@@ -4,7 +4,7 @@ import { IconLibrary } from '../../../../../bpl-tools/Components';
 
 
 const serviceItemsPanel = ({ attributes, index, setAttributes }) => {
-	const { services, theme } = attributes;
+	const { services, theme, options } = attributes;
 	const currentService = services[index] || {};
 
 	return (
@@ -28,29 +28,9 @@ const serviceItemsPanel = ({ attributes, index, setAttributes }) => {
 				}
 			/>
 
-			<ToggleControl
-				label="Show Icon"
-				checked={currentService?.showIcon ?? true}
-				onChange={(v) =>
-					setAttributes({
-						services: updateData(services, v, index, 'showIcon'),
-					})
-				}
-			/>
-			{
-				theme === "diagonal" && <ToggleControl
-					className='mt20'
-					label="Show Accenrtt Line"
-					checked={currentService?.showAccentLine ?? true}
-					onChange={(v) =>
-						setAttributes({
-							services: updateData(services, v, index, 'showAccentLine'),
-						})
-					}
-				/>
-			}
 
-			{currentService?.showIcon && (
+
+			{options?.showIcon && (
 				<>
 					<IconLibrary
 						className="mt20"

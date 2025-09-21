@@ -197,6 +197,14 @@
 					"color": "#fff"
 				}
 			}
+		},
+		"options":{
+			"type":"object",
+			"default":{
+				"showIcon": true,
+				"showAccentLine": true
+			
+			}
 		}
 	},
 	"supports": {
