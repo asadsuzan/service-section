@@ -9,19 +9,26 @@ const ServiceCard = ( {
 	index,
 	setAttributes,
 	styles,
+	showIcon,
+	showAccentLine,
 } ) => {
 	const handleActiveCArd = ( idx ) => {
 		if ( ! isBackend ) return;
 
 		setAttributes( { activeCard: idx } );
 	};
+	
+	if(variant === 'default'){
+		variant = 'vertical';
+	}
 
 	const renderVerticalCard = () => (
 		<div
 			className="card-vertical services-card-block-service"
 			onClick={ () => handleActiveCArd( index ) }
 		>
-			<div className="icon-wrapper">
+			{
+				showIcon && <div className="icon-wrapper">
 				<span
 					className="icon"
 					dangerouslySetInnerHTML={ {
@@ -36,6 +43,7 @@ const ServiceCard = ( {
 					} }
 				></span>
 			</div>
+			}
 			<h3 className="card-title">{ title }</h3>
 			<p className="card-description">{ description }</p>
 		</div>
@@ -46,7 +54,8 @@ const ServiceCard = ( {
 			className="card-horizontal services-card-block-service"
 			onClick={ () => handleActiveCArd( index ) }
 		>
-			<div className="icon-wrapper">
+				{
+				showIcon && <div className="icon-wrapper">
 				<span
 					className="icon"
 					dangerouslySetInnerHTML={ {
@@ -61,6 +70,7 @@ const ServiceCard = ( {
 					} }
 				></span>
 			</div>
+			}
 			<div className="content-section">
 				<h3 className="card-title">{ title }</h3>
 				<p className="card-description">{ description }</p>
@@ -74,7 +84,8 @@ const ServiceCard = ( {
 			onClick={ () => handleActiveCArd( index ) }
 		>
 			<div className="diagonal-bg"></div>
-			<div className="icon-wrapper">
+			{
+				showIcon && <div className="icon-wrapper">
 				<span
 					className="icon"
 					dangerouslySetInnerHTML={ {
@@ -89,8 +100,11 @@ const ServiceCard = ( {
 					} }
 				></span>
 			</div>
+			}
 			<div className="content-area">
-				<div className="accent-line"></div>
+				{
+					showAccentLine && <div className="accent-line"></div>
+				}
 				<h3 className="card-title">{ title }</h3>
 				<p className="card-description">{ description }</p>
 			</div>

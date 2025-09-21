@@ -1,12 +1,12 @@
 import { produce } from 'immer';
 
-export const themeSwitch = ( theme = 'vertical', attributes ) =>
-	produce( attributes, ( draft ) => {
-		draft[ 'theme' ] = theme;
+export const themeSwitch = (theme = 'vertical', attributes) =>
+	produce(attributes, (draft) => {
+		draft['theme'] = theme;
 
-		switch ( theme ) {
+		switch (theme) {
 			case 'vertical':
-				draft[ 'styles' ] = {
+				draft['styles'] = {
 					columns: {
 						desktop: 3,
 						tablet: 2,
@@ -73,8 +73,8 @@ export const themeSwitch = ( theme = 'vertical', attributes ) =>
 						typo: {
 							fontSize: {
 								desktop: '1.5rem',
-								tablet: '1.2rem',
-								mobile: '1rem',
+								tablet: '1.4rem',
+								mobile: '1.4rem',
 							},
 							fontWeight: 600,
 							fontFamily:
@@ -86,6 +86,26 @@ export const themeSwitch = ( theme = 'vertical', attributes ) =>
 							color: '#1a202c',
 							bg: '',
 						},
+						padding: {
+							desktop: {
+								top: "0px",
+								right: "0px",
+								bottom: "0px",
+								left: "0px"
+							},
+							tablet: {
+								top: "0px",
+								right: "0px",
+								bottom: "0px",
+								left: "0px"
+							},
+							mobile: {
+								top: "0px",
+								right: "0px",
+								bottom: "0px",
+								left: "0px"
+							}
+						}
 					},
 					description: {
 						typo: {
@@ -103,6 +123,26 @@ export const themeSwitch = ( theme = 'vertical', attributes ) =>
 							color: '#4a5568',
 							bg: '',
 						},
+						padding: {
+							desktop: {
+								top: "0px",
+								right: "0px",
+								bottom: "0px",
+								left: "0px"
+							},
+							tablet: {
+								top: "0px",
+								right: "0px",
+								bottom: "0px",
+								left: "0px"
+							},
+							mobile: {
+								top: "0px",
+								right: "0px",
+								bottom: "0px",
+								left: "0px"
+							}
+						}
 					},
 					icon: {
 						bg: {
@@ -115,7 +155,7 @@ export const themeSwitch = ( theme = 'vertical', attributes ) =>
 				break;
 
 			case 'horizontal':
-				draft[ 'styles' ] = {
+				draft['styles'] = {
 					columns: {
 						desktop: 3,
 						tablet: 2,
@@ -183,8 +223,8 @@ export const themeSwitch = ( theme = 'vertical', attributes ) =>
 						typo: {
 							fontSize: {
 								desktop: '1.5rem',
-								tablet: '1.2rem',
-								mobile: '1rem',
+								tablet: '1.4rem',
+								mobile: '1.4rem',
 							},
 							fontWeight: 600,
 							fontFamily:
@@ -196,6 +236,26 @@ export const themeSwitch = ( theme = 'vertical', attributes ) =>
 							color: '#1a202c',
 							bg: '',
 						},
+						padding: {
+							desktop: {
+								top: "0px",
+								right: "0px",
+								bottom: "0px",
+								left: "0px"
+							},
+							tablet: {
+								top: "0px",
+								right: "0px",
+								bottom: "0px",
+								left: "0px"
+							},
+							mobile: {
+								top: "0px",
+								right: "0px",
+								bottom: "0px",
+								left: "0px"
+							}
+						}
 					},
 					description: {
 						typo: {
@@ -213,6 +273,26 @@ export const themeSwitch = ( theme = 'vertical', attributes ) =>
 							color: '#4a5568',
 							bg: '',
 						},
+						padding: {
+							desktop: {
+								top: "0px",
+								right: "0px",
+								bottom: "0px",
+								left: "0px"
+							},
+							tablet: {
+								top: "0px",
+								right: "0px",
+								bottom: "0px",
+								left: "0px"
+							},
+							mobile: {
+								top: "0px",
+								right: "0px",
+								bottom: "0px",
+								left: "0px"
+							}
+						}
 					},
 					icon: {
 						bg: {
@@ -228,7 +308,7 @@ export const themeSwitch = ( theme = 'vertical', attributes ) =>
 				break;
 
 			case 'diagonal':
-				draft[ 'styles' ] = {
+				draft['styles'] = {
 					columns: {
 						desktop: 3,
 						tablet: 2,
@@ -295,8 +375,8 @@ export const themeSwitch = ( theme = 'vertical', attributes ) =>
 						typo: {
 							fontSize: {
 								desktop: '1.5rem',
-								tablet: '1.2rem',
-								mobile: '1rem',
+								tablet: '1.4rem',
+								mobile: '1.4rem',
 							},
 							fontWeight: 600,
 							fontFamily:
@@ -308,6 +388,26 @@ export const themeSwitch = ( theme = 'vertical', attributes ) =>
 							color: '#1a202c',
 							bg: '',
 						},
+						padding: {
+							desktop: {
+								top: "0px",
+								right: "0px",
+								bottom: "0px",
+								left: "0px"
+							},
+							tablet: {
+								top: "0px",
+								right: "0px",
+								bottom: "0px",
+								left: "0px"
+							},
+							mobile: {
+								top: "0px",
+								right: "0px",
+								bottom: "0px",
+								left: "0px"
+							}
+						}
 					},
 					description: {
 						typo: {
@@ -325,6 +425,26 @@ export const themeSwitch = ( theme = 'vertical', attributes ) =>
 							color: '#4a5568',
 							bg: '',
 						},
+						padding: {
+							desktop: {
+								top: "0px",
+								right: "0px",
+								bottom: "0px",
+								left: "0px"
+							},
+							tablet: {
+								top: "0px",
+								right: "0px",
+								bottom: "0px",
+								left: "0px"
+							},
+							mobile: {
+								top: "0px",
+								right: "0px",
+								bottom: "0px",
+								left: "0px"
+							}
+						}
 					},
 					icon: {
 						bg: {
@@ -339,11 +459,11 @@ export const themeSwitch = ( theme = 'vertical', attributes ) =>
 				};
 				break;
 		}
-	} );
+	});
 
-export const addSvgAttrs = ( svgString, attrs = {} ) => {
-	let extra = Object.entries( attrs )
-		.map( ( [ key, value ] ) => `${ key }="${ value }"` )
-		.join( ' ' );
-	return svgString.replace( '<svg', `<svg ${ extra }` );
+export const addSvgAttrs = (svgString, attrs = {}) => {
+	let extra = Object.entries(attrs)
+		.map(([key, value]) => `${key}="${value}"`)
+		.join(' ');
+	return svgString.replace('<svg', `<svg ${extra}`);
 };

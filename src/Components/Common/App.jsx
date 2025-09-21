@@ -18,6 +18,8 @@ const App = ( { attributes, isBackend = false, setAttributes = () => {} } ) => {
 						setAttributes={ setAttributes }
 						variant={ theme }
 						styles={ styles }
+						showIcon={service?.showIcon ?? true}
+						showAccentLine={service?.showAccentLine ?? false}
 					/>
 				) ) }
 			</div>
