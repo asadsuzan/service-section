@@ -17,7 +17,7 @@ module.exports = {
 	entry: {
 		...defaultConfig.entry(),
 		shortcode: './src/shortcode/shortcode.js',
-		admin: './src/admin/index.js',
+		admin: './src/admin/dashboard.js',
 	},
 	plugins: [...plugins, new ESLintPlugin()],
 	optimization: {},
