@@ -2,7 +2,7 @@ export const themes = () => [
 	{
 		label: 'Default',
 		value: 'default',
-		content: `<!-- wp:services-card-block/services-cards {"activeCard":1} /-->`,
+		content: `<!-- wp:services-card-block/services-cards {"activeCard":2} /-->`,
 	},
 	{
 		label: 'Horizontal',

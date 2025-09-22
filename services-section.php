@@ -1,7 +1,7 @@
 <?php
 /**
- * Plugin Name: Services Section 
- * Description:  A service card block with multiple themes with easy to use interface.
+ * Plugin Name: Services Section
+ * Description: A service card block with multiple themes and an easy-to-use interface.
  * Version: 1.0.0
  * Author: bPlugins
  * Author URI: https://bplugins.com
@@ -10,84 +10,117 @@
  * Text Domain: services-card-block
  */
 
-// ABS PATH
-if ( !defined( 'ABSPATH' ) ) { exit; }
+namespace BPlugins\ServicesCard;
 
-// Constant
-define( 'Q3Q4SCB_VERSION', isset( $_SERVER['HTTP_HOST'] ) && 'localhost' === $_SERVER['HTTP_HOST'] ? time() : '1.0.0' );
-define( 'Q3Q4SCB_DIR_URL', plugin_dir_url( __FILE__ ) );
-define( 'Q3Q4SCB_DIR_PATH', plugin_dir_path( __FILE__ ) );
+// Exit if accessed directly.
+if (! defined('ABSPATH')) {
+    exit;
+}
 
-if( !class_exists( 'Q3Q4SERVICECARDPLUGIN' ) ){
-	class Q3Q4SERVICECARDPLUGIN{
+// Constants.
+define('Q3Q4SCB_VERSION', (isset($_SERVER['HTTP_HOST']) && 'localhost' === $_SERVER['HTTP_HOST']) ? time() : '1.0.0');
+define('Q3Q4SCB_DIR_URL', plugin_dir_url(__FILE__));
+define('Q3Q4SCB_DIR_PATH', plugin_dir_path(__FILE__));
 
-		function __construct(){
-			add_action( 'init', [ $this, 'onInit' ] );
-			add_filter('manage_q3q4_service_card_posts_columns', [$this, 'q3q4_cpt_callback']);
-			add_action('manage_q3q4_service_card_posts_custom_column', [$this, 'q3q4_manage_cpt_columns'], 10, 2);
-		    add_shortcode('q3q4_service_card', [$this, 'q3q4_service_card_block_shortcode']);
-			add_action('admin_enqueue_scripts', [$this, 'sc_admin_enqueue_script']);
-			add_action('admin_menu', [$this,"q3q3_admin_menu_cb"]);
+if (! class_exists('Q3Q4ServiceCardPlugin')) {
+    class Q3Q4ServiceCardPlugin
+    {
+        public function __construct()
+        {
+            add_action('init', [$this, 'onInit']);
+            add_filter('manage_q3q4_service_card_posts_columns', [$this, 'cptColumns']);
+            add_action('manage_q3q4_service_card_posts_custom_column', [$this, 'manageCptColumns'], 10, 2);
+            add_shortcode('q3q4_service_card', [$this, 'serviceCardShortcode']);
+            add_action('admin_enqueue_scripts', [$this, 'adminEnqueueScripts']);
+			add_action('admin_menu', [$this, 'q3q4_add_demo_submenu']);
 
-				// Plugin activation + redirect logic
+			// Plugin activation + redirect logic
               register_activation_hook( __FILE__, [$this,'q3q4_plugin_activate'] );
            	  add_action( 'admin_init', [$this,'q3q4_plugin_redirect'] );
-	
-		}
+        }
 
-		function onInit(){
-			register_block_type( __DIR__ . '/build' );
+        public function onInit(): void
+        {
+            register_block_type(__DIR__ . '/build');
+                register_post_type(
+                'q3q4_service_card',
+                [
+                    'label'               => 'Service card',
+                    'labels'              => [
+						'add_new' => 'Add New',
+						'add_new_item' => 'Add New Service',
+						'edit_item' => 'Edit Service',
+						'not_found' => 'There was no service please add one'
+                        
+                    ],
+                    'show_in_rest' => true,
+					'public' => true,
+					'publicly_queryable' => false,
+					'menu_icon' => 'dashicons-screenoptions',
+					'item_published' => 'Service Card Block Published',
+                    'item_updated' => 'Service Card Block Updated',
+					'template' => [['services-card-block/services-cards']],
+					// 'template_lock' => 'all',
+                ]
+            );
+        }
 
-				register_post_type('q3q4_service_card', [
-				'label' => 'Service card',
-				'description' => 'this is Service_card and seo friendly card',
-				'labels' => [
-					'name' => __('All Services', 'services-card-block'),
-					'singular_name' => __('Service card', 'services-card-block'),
-					'add_new' => __('Add New', 'services-card-block'),
-					'add_new_item' => __('Add New Service', 'services-card-block'),
-					'edit_item' => __('Edit Service card', 'services-card-block'),
-					'new_item' => __('New Service card', 'services-card-block'),
-					'view_item' => __('View Service card', 'services-card-block'),
-					'view_items' => __('View Service card', 'services-card-block'),
-					'search_items' => __('Search Service card', 'services-card-block'),
-					'not_found' => __('No Service card found.', 'services-card-block'),
-				],
-				'public' => true, //frontend or backend show
-				"publicly_queryable" => false, //view link hidden
-				'show_ui' => true,  //admin show
-				'show_in_menu' => true,
-				'show_in_rest' => true,  //REST support
-				'menu_position' => 79, //position type
-				'menu_icon' => 'dashicons-admin-tools', //icon
-				'supports' => array('title', 'editor', 'revisions'),
-				'template' => [['services-card-block/services-cards']],  //open templated
-				// 'template_lock' => 'all', //lock
-				'show_in_nav_menus' => true,
-				'show_in_admin_bar' => true,
-
-			]);
-
-		}
-
-	
-
-		//column UI
-		function q3q4_manage_cpt_columns($column_name, $post_id){
-			if ($column_name == 'shortcode') {
-				echo '<div class="bPlAdminShortcode" id="bPlAdminShortcode-' . esc_attr($post_id) . '">
-						<input value="[q3q4_service_card id=' . esc_attr($post_id) . ']" onclick="copyBPlAdminShortcode(\'' . esc_attr($post_id) . '\')" readonly>
-						<span class="tooltip">Copy To Clipboard</span>
-					  </div>';
+			function q3q4_add_demo_submenu(){
+				add_submenu_page(
+					'edit.php?post_type=q3q4_service_card',
+					'Demo and Help',
+					'Demo & Help',
+					'manage_options',
+					'q3q4_demo_page',
+					[$this, 'q3q4_render_demo_page']
+				);
 			}
-			if ($column_name == 'publisher') {
-				echo 'bplugins';
+			
+			function q3q4_render_demo_page(){ 
+				?>
+					<div
+						id='q3q4AdminDashboard'
+						data-info='<?php echo esc_attr( wp_json_encode( [
+							'version' => Q3Q4SCB_VERSION,
+							'isPremium' => false,
+							'hasPro' => false,
+						] ) ); ?>'
+					></div>
+				<?php
 			}
-		}
 
-		// Shortcode
 
-	  function q3q4_service_card_block_shortcode($atts){
+        public function manageCptColumns(string $columnName, int $postId): void
+        {
+            if ('shortcode' === $columnName) {
+                echo '<div class="bPlAdminShortcode" id="bPlAdminShortcode-' . esc_attr($postId) . '">
+                        <input value="[q3q4_service_card id=' . esc_attr($postId) . ']" onclick="copyBPlAdminShortcode(\'' . esc_attr($postId) . '\')" readonly>
+                        <span class="tooltip">Copy To Clipboard</span>
+                      </div>';
+            }
+
+            if ('publisher' === $columnName) {
+                echo 'bplugins';
+            }
+        }
+
+        public function displayContent(\WP_Post $post): string
+        {
+            $blocks = parse_blocks($post->post_content);
+            return render_block($blocks[0]);
+        }
+
+        public function cptColumns(array $columns): array
+        {
+            unset($columns['date']);
+            $columns['shortcode'] = 'Shortcode';
+            $columns['date']      = 'Date';
+            $columns['publisher'] = 'Publisher';
+            return $columns;
+        }
+
+   
+       	function serviceCardShortcode($atts){
 				
 				if (!isset($atts['id'])) {
 					$attr_string = '';
@@ -132,64 +165,24 @@ if( !class_exists( 'Q3Q4SERVICECARDPLUGIN' ) ){
 				}
 			}
 
-			function displayContent( $post ){
-				$blocks = parse_blocks( $post->post_content );
-				return render_block( $blocks[0] );
-			}
-				//custome column 
-		function q3q4_cpt_callback($column)
-		{
-			unset($column['date']);
-			$column['shortcode'] = 'ShortCode';
-			$column['date'] = 'Date';
-			$column['publisher'] = 'Publisher';
-			return $column;
-		}
+        public function adminEnqueueScripts($screen): void
+        {
+           	global $typenow;
 
-		function q3q3_admin_menu_cb() {
-        add_submenu_page(
-        'edit.php?post_type=q3q4_service_card',
-        'About Service Card Block',
-        'About',
-        'manage_options',
-        'q3q4_render_about_page',
-        [$this,"q3q4_render_about_page"],
-        90
-      );
-}
+				if ('q3q4_service_card' === $typenow) {
+					
+					wp_enqueue_script( 'admin-post-js', Q3Q4SCB_DIR_URL . 'build/admin-post.js', [], Q3Q4SCB_VERSION, true );
+					wp_enqueue_style( 'admin-post-css', Q3Q4SCB_DIR_URL . 'build/admin-post.css', [], Q3Q4SCB_VERSION );
 
-  		function q3q4_render_about_page(){
-	echo "<div id='q3q4_admin_root'></div>";
-}
+					if ($screen === "q3q4_service_card_page_q3q4_demo_page") {
+						wp_enqueue_script( 'bpl-admin-dashboard-js', Q3Q4SCB_DIR_URL . 'build/admin-dashboard.js', [ 'react', 'react-dom' ], Q3Q4SCB_VERSION, true );
+						wp_enqueue_style( 'bpl-admin-dashboard-css', Q3Q4SCB_DIR_URL . 'build/admin-dashboard.css', [], Q3Q4SCB_VERSION );
+					}
 
-		//data enqueueshortcode
-		function sc_admin_enqueue_script(){
-			global $typenow;
+				}
+        }
 
-			if ('q3q4_service_card' === $typenow) {
-				wp_enqueue_script('shortcode-js', Q3Q4SCB_DIR_URL . './build/shortcode.js', [], Q3Q4SCB_VERSION, true);
-				wp_enqueue_style('shortcode-css', Q3Q4SCB_DIR_URL . './build/shortcode.css',[],Q3Q4SCB_VERSION );
-
-			}
-
-			wp_enqueue_script(
-			'q3q4-admin-script',
-			Q3Q4SCB_DIR_URL . './build/admin.js',
-			['react','react-dom'],
-			Q3Q4SCB_VERSION,
-			true
-			);
-			wp_enqueue_style(
-			'q3q4-admin-style',
-			Q3Q4SCB_DIR_URL . './build/admin.css',
-			[],
-			Q3Q4SCB_VERSION
-			);
-		}
-
-
-
-  	//plugin activate
+		  	//plugin activate
 		function q3q4_plugin_activate() {
 		set_transient('_q3q4_do_activation_redirect', true, 30);
 		}
@@ -206,7 +199,7 @@ if( !class_exists( 'Q3Q4SERVICECARDPLUGIN' ) ){
 
       // Redirect to service card layout post type
 				wp_safe_redirect(
-					admin_url('edit.php?post_type=q3q4_service_card&page=q3q4_render_about_page')
+					admin_url('edit.php?post_type=q3q4_service_card&page=q3q4_demo_page')
 				);
 				exit;
     }
@@ -215,34 +208,9 @@ if( !class_exists( 'Q3Q4SERVICECARDPLUGIN' ) ){
 
 
 
-	}
-	new Q3Q4SERVICECARDPLUGIN();
+
+
+    }
+
+    new Q3Q4ServiceCardPlugin();
 }
-
-// // Plugin activation + redirect logic
-// // Plugin activation + redirect logic
-// register_activation_hook( __FILE__, 'q3q4_plugin_activate' );
-// function q3q4_plugin_activate() {
-//     set_transient( '_q3q4_do_activation_redirect', true, 30 );
-// }
-
-// add_action( 'admin_init', 'q3q4_plugin_redirect' );
-// function q3q4_plugin_redirect() {
-//     if ( get_transient( '_q3q4_do_activation_redirect' ) ) {
-//         delete_transient( '_q3q4_do_activation_redirect' );
-
-//         // Skip redirect if multiple plugins activated
-//         if ( isset( $_GET['activate-multi'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-//             return;
-//         }
-
-//         // Generate a nonce-protected URL for the settings page
-//         $redirect_url = wp_nonce_url(
-//             admin_url( 'edit.php?post_type=q3q4_service_card&page=q3q4_render_about_page' ),
-//             'q3q4_settings_redirect'
-//         );
-
-//         wp_safe_redirect( $redirect_url );
-//         exit;
-//     }
-// }
