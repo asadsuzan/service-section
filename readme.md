@@ -1,45 +1,33 @@
-## Plugin Setup
-1. Find an appropriate [plugin-slug](https://wordpress.org/plugins/) according to the solution of the plugin.
-2. Write the min 4-5 character prefix, plugin name, short description(up to 150 chars), long description (min 3-4 para), keywords(min 4), block name, and block description in a temporary notebook.
-2. If your block is not part of `services-card-block`, then the text domain should be your `plugin-slug`.
-4. Apply 1st and 2nd list data to this template with case sensitivity: uppercase for uppercase, lowercase for lowercase, title case for title case, and camel case for camel case. (for the block name try different way to search (blockname, blockName, BlockName, Block Name, block name))
-5. Complete the `readme.txt` file.
-6. The main element is `.wp-block-services-card-block-{blockname}`, and its immediate child is `.bBlocksBlockName`. Do not apply width or columns for the main element.
-7. Write appropriate class and ID names for the elements.
-8. Add the initial roadmap for the plugin in the `todo.txt`.
-9. If you skip one of these, we will not provide any support for the project.
-10. Enjoy CODING!
+# 🛠️ Service Section (Services Card Block)
 
-The folder structure that `plugin-zip` accepts is:
+A **WordPress Gutenberg block plugin** that lets you create customizable service card sections with multiple themes, layouts, and design options.  
+Perfect for portfolios, business websites, and product showcases.
 
-```
-/plugin-name
-	plugin-name.php
-	uninstall.php
-	/languages
-	/includes
-	/admin
-		/js
-		/css
-		/images
-	/public
-		/js
-		/css
-		/images
-```
+---
 
-**If you want to add custom folders, you have to add those folder names to the {files} array in the `package.json` file.**
+## ✨ Features
 
-### Required packages for this project
-```json
-"dependencies": {
-	"immer": "latest"
-},
-"devDependencies": {
-	"@wordpress/scripts": "latest",
-	"eslint-webpack-plugin": "latest"
-}
-```
+- 📦 **Gutenberg Block** – Add responsive service cards directly in the block editor
+- 🎨 **Multiple Layout Themes** – Vertical, horizontal, diagonal (and more coming)
+- ⚙️ **Highly Customizable**:
+  - Show/hide icons and accent lines
+  - Columns, padding, borders, shadows
+  - Backgrounds and typography
+- 🔄 **Dynamic Server-side Rendering**
+- 📝 **Custom Post Type** – Manage services centrally with `q3q4_service_card`
+- 🔗 **Shortcode Support** – `[q3q4_service_card id=123]`
+- 📚 **Demo & Help** – Accessible inside WordPress admin
 
-## Editor Setup
-#### For this project use this setup in your IDE Editor. Preferred `Cursor`. If you want to set another setup for your personal/portfolio/example/tutorial project, use another IDE Editor. Setup the `Cursor` IDE using the provided `*.code-profile`
+---
+
+## 🚀 Installation
+
+1. Clone or download this repository into your WordPress plugins directory:
+
+   ```bash
+   git clone https://github.com/asadsuzan/service-section.git service-section
+   ```
+
+2. Go to WordPress Admin → Plugins and activate Service Section.
+
+3. In the block editor, search for Services Cards and add it to your page.
