@@ -1,13 +1,13 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
-	"name": "services-card-block/services-cards",
+	"name": "services-card/services-cards",
 	"version": "1.0.0",
-	"title": "Services cards",
+	"title": "Services card",
 	"category": "design",
 	"description": "A services cards block.",
 	"keywords": [ "serevice", "card", "service card", "service-card", "cards" ],
-	"textdomain": "services-card-block",
+	"textdomain": "services-card",
 	"attributes": {
 		"alignment": {
 			"type": "string",
@@ -214,7 +214,7 @@
 	"example": {
 		"attributes": {}
 	},
-	"editorScript": "file:./index.js",
+	"editorScript": ["file:./index.js", "wp-api", "wp-utils"],
 	"editorStyle": "file:./index.css",
 	"style": "file:./view.css",
 	"render": "file:./render.php",

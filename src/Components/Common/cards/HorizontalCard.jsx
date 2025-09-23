@@ -3,7 +3,7 @@ import { addSvgAttrs } from '../../../utils/functions';
 
 const HorizontalCard = ( { icon, title, description, styles } ) => {
 	return (
-		<div className="card-horizontal services-card-block-service">
+		<div className="card-horizontal services-card-service">
 			<div className="icon-wrapper">
 				<span
 					className="icon"

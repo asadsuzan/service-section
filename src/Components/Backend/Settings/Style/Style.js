@@ -24,7 +24,7 @@ const Style = ({ attributes = {}, setAttributes, device }) => {
 			{ /* grid settings  */}
 			<PanelBody
 				className="bPlPanelBody"
-				title={__('Layout', 'services-card-block')}
+				title={__('Layout', 'services-card')}
 				initialOpen
 			>
 				<PanelRow>
@@ -49,18 +49,18 @@ const Style = ({ attributes = {}, setAttributes, device }) => {
 
 			<PanelBody
 				className="bPlPanelBody"
-				title={__('Container', 'services-card-block')}
+				title={__('Container', 'services-card')}
 				initialOpen={false}
 			>
 				{ /* text align  */}
 
 				<BButtonGroup
 					className="mt10"
-					label={__('Text Align', 'b-blocks')}
+					label={__('Text Align', 'services-card')}
 					options={[
-						{ label: __('Left', 'b-blocks'), value: 'left' },
-						{ label: __('Center', 'b-blocks'), value: 'center' },
-						{ label: __('Right', 'b-blocks'), value: 'right' },
+						{ label: __('Left', 'services-card'), value: 'left' },
+						{ label: __('Center', 'services-card'), value: 'center' },
+						{ label: __('Right', 'services-card'), value: 'right' },
 					]}
 					value={body?.align}
 					onChange={(v) =>
@@ -117,7 +117,7 @@ const Style = ({ attributes = {}, setAttributes, device }) => {
 
 				{ /* box shadow  */}
 				<ShadowControl
-					label={__('Shadow', 'services-card-block')}
+					label={__('Shadow', 'services-card')}
 					value={body?.shadow}
 					onChange={(v) =>
 						setAttributes({
@@ -127,7 +127,7 @@ const Style = ({ attributes = {}, setAttributes, device }) => {
 				/>
 				{ /* hover box shadow  */}
 				<ShadowControl
-					label={__('Hover Shadow', 'services-card-block')}
+					label={__('Hover Shadow', 'services-card')}
 					value={body?.hover?.shadow}
 					onChange={(v) =>
 						setAttributes({
@@ -160,7 +160,7 @@ const Style = ({ attributes = {}, setAttributes, device }) => {
 			{
 				options?.showIcon ? <PanelBody
 					className='bPlPanelBody '
-					title={__('Icon', 'services-card-block')}
+					title={__('Icon', 'services-card')}
 					initialOpen={false}
 
 				>
@@ -245,14 +245,14 @@ const Style = ({ attributes = {}, setAttributes, device }) => {
 			{/* title settings   */}
 			<PanelBody
 				className="bPlPanelBody"
-				title={__('Title', 'services-card-block')}
+				title={__('Title', 'services-card')}
 				initialOpen={false}
 			>
 				{ /* title typo  */}
 
 				<Typography
 					className="mt10"
-					label={__('Typo', 'services-card-block')}
+					label={__('Typo', 'services-card')}
 					value={title?.typo}
 					onChange={(v) =>
 						setAttributes({
@@ -275,7 +275,7 @@ const Style = ({ attributes = {}, setAttributes, device }) => {
 
 				<BoxControl
 					className='mt20'
-					label={__('Padding', 'services-card-block')}
+					label={__('Padding', 'services-card')}
 					values={title?.padding?.[device]}
 					defaultValues={{
 						top: "0px",
@@ -297,13 +297,13 @@ const Style = ({ attributes = {}, setAttributes, device }) => {
 			{/* description settings  */}
 			<PanelBody
 				className="bPlPanelBody"
-				title={__('Description ', 'services-card-block')}
+				title={__('Description ', 'services-card')}
 				initialOpen={false}
 			>
 
 				<Typography
 					className="mt10"
-					label={__('Typo', 'services-card-block')}
+					label={__('Typo', 'services-card')}
 					value={description?.typo}
 					onChange={(v) =>
 						setAttributes({
@@ -337,7 +337,7 @@ const Style = ({ attributes = {}, setAttributes, device }) => {
 
 				<BoxControl
 					className='mt20'
-					label={__('Padding', 'services-card-block')}
+					label={__('Padding', 'services-card')}
 					values={description?.padding?.[device]}
 					onChange={(v) => setAttributes({ styles: updateData(styles, v, 'description', 'padding', device) })}
 				/>

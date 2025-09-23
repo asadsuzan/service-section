@@ -5,17 +5,20 @@ import serviceItemsPanel from '../../itemsPanel/serviceItemsPanel';
 import { themeSwitch } from '../../../../utils/functions';
 import { themeOptions } from '../../../../utils/options';
 import { updateData } from '../../../../../../bpl-tools/utils/functions';
+import { BControlPro } from '../../../../../../bpl-tools/ProControls';
 
 
-const General = ({ attributes, setAttributes }) => {
+const General = ({ attributes, setAttributes, isPremium, setIsProModalOpen }) => {
 	const { activeCard, theme, options } = attributes || {};
+
+	const premiumProps = { isPremium, setIsProModalOpen };
 
 	return (
 		<>
 			{ /* theme switcher  */}
 			<PanelBody
 				className="bPlPanelBody"
-				title={__('Themes', 'b-blocks')}
+				title={__('Themes', 'services-card')}
 				initialOpen={true}
 			>
 				<SelectControl
@@ -29,7 +32,7 @@ const General = ({ attributes, setAttributes }) => {
 
 			<PanelBody
 				className="bPlPanelBody"
-				title={__('Services', 'b-blocks')}
+				title={__('Services', 'services-card')}
 				initialOpen={true}
 			>
 				<ItemsPanel
@@ -51,10 +54,11 @@ const General = ({ attributes, setAttributes }) => {
 
 			<PanelBody
 				className="bPlPanelBody"
-				title={__('Options', 'b-blocks')}
+				title={__('Options', 'services-card')}
 				initialOpen={false}
 			>
-				<ToggleControl
+
+				{/* <ToggleControl
 					label="Show Icon"
 					checked={options?.showIcon ?? true}
 					onChange={(v) =>
@@ -62,7 +66,24 @@ const General = ({ attributes, setAttributes }) => {
 							options: updateData(options, v, 'showIcon'),
 						})
 					}
+				/> */}
+
+				<BControlPro
+					label="Show Icon"
+					checked={options?.showIcon ?? true}
+					onChange={(v) =>
+						setAttributes({
+							options: updateData(options, v, 'showIcon'),
+						})
+					}
+					Component={ToggleControl}
+					{...premiumProps}
 				/>
+
+
+
+
+
 				{
 					theme === "diagonal" && <ToggleControl
 						className='mt20'

@@ -1,10 +1,10 @@
-import { TextareaControl, TextControl, ToggleControl } from '@wordpress/components';
+import { TextareaControl, TextControl } from '@wordpress/components';
 import { updateData } from '../../../../../bpl-tools/utils/functions';
 import { IconLibrary } from '../../../../../bpl-tools/Components';
 
 
 const serviceItemsPanel = ({ attributes, index, setAttributes }) => {
-	const { services, theme, options } = attributes;
+	const { services, options } = attributes;
 	const currentService = services[index] || {};
 
 	return (

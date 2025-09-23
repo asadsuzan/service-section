@@ -4,43 +4,47 @@ import Style from '../Common/Style';
 import App from '../Common/App';
 import { withSelect } from '@wordpress/data';
 import ClipBoard from '../../shortcode/clipBoard';
+import { usePremiumInEditor } from '../../../../bpl-tools/hooks';
 
-const Edit = ( props ) => {
-	const { attributes, setAttributes, clientId, device, postType, postId } =
-		props;
+const Edit = (props) => {
+	const { attributes, setAttributes, clientId, device, postType, postId } = props;
+
+	const { isPremium, isLoading } = usePremiumInEditor("scbUtils", "scbPremiumChecker");
+
+	console.log({ isLoading, isPremium });
 
 	return (
 		<>
-			<Settings { ...{ attributes, setAttributes, clientId, device } } />
+			<Settings {...{ attributes, setAttributes, clientId, device, isPremium }} />
 
-			<div { ...useBlockProps() }>
+			<div {...useBlockProps()}>
 				<Style
-					attributes={ attributes }
-					id={ `block-${ clientId }` }
-					device={ device }
+					attributes={attributes}
+					id={`block-${clientId}`}
+					device={device}
 				/>
 
-				{ postType == 'q3q4_service_card' && (
+				{postType == 'q3q4_service_card' && (
 					<ClipBoard
-						shortcode={ `[q3q4_service_card id=${ postId }]` }
+						shortcode={`[q3q4_service_card id=${postId}]`}
 					/>
-				) }
+				)}
 				<App
-					{ ...{ attributes } }
-					isBackend={ true }
-					setAttributes={ setAttributes }
+					{...{ attributes }}
+					isBackend={true}
+					setAttributes={setAttributes}
 				/>
 			</div>
 		</>
 	);
 };
 
-export default withSelect( ( select ) => {
+export default withSelect((select) => {
 	const { getDeviceType, getCurrentPostId, getCurrentPostType } =
-		select( 'core/editor' );
+		select('core/editor');
 	return {
 		device: getDeviceType()?.toLowerCase(),
 		postType: getCurrentPostType(),
 		postId: getCurrentPostId(),
 	};
-} )( Edit );
+})(Edit);

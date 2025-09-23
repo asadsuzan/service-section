@@ -3,7 +3,7 @@ import { addSvgAttrs } from '../../../utils/functions';
 
 const DiagonalCard = ( { icon, title, description, styles } ) => {
 	return (
-		<div className="card-diagonal services-card-block-service">
+		<div className="card-diagonal services-card-service">
 			<div className="diagonal-bg"></div>
 			<div className="icon-wrapper">
 				<span

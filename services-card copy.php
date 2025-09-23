@@ -1,13 +1,13 @@
 <?php
 /**
- * Plugin Name: Services Section
+ * Plugin Name: Services Card
  * Description: A service card block with multiple themes and an easy-to-use interface.
  * Version: 1.0.0
  * Author: bPlugins
  * Author URI: https://bplugins.com
  * License: GPLv3
  * License URI: https://www.gnu.org/licenses/gpl-3.0.txt
- * Text Domain: services-card-block
+ * Text Domain: services-card
  */
 
 namespace BPlugins\ServicesCard;
@@ -28,9 +28,9 @@ if (! class_exists('Q3Q4ServiceCardPlugin')) {
         public function __construct()
         {
             add_action('init', [$this, 'onInit']);
-            add_filter('manage_q3q4_service_card_posts_columns', [$this, 'cptColumns']);
-            add_action('manage_q3q4_service_card_posts_custom_column', [$this, 'manageCptColumns'], 10, 2);
-            add_shortcode('q3q4_service_card', [$this, 'serviceCardShortcode']);
+            add_filter('manage_services_card_posts_columns', [$this, 'cptColumns']);
+            add_action('manage_services_card_posts_custom_column', [$this, 'manageCptColumns'], 10, 2);
+            add_shortcode('services_card', [$this, 'serviceCardShortcode']);
             add_action('admin_enqueue_scripts', [$this, 'adminEnqueueScripts']);
 			add_action('admin_menu', [$this, 'q3q4_add_demo_submenu']);
 
@@ -43,7 +43,7 @@ if (! class_exists('Q3Q4ServiceCardPlugin')) {
         {
             register_block_type(__DIR__ . '/build');
                 register_post_type(
-                'q3q4_service_card',
+                'services_card',
                 [
                     'label'               => 'Service card',
                     'labels'              => [
@@ -59,7 +59,7 @@ if (! class_exists('Q3Q4ServiceCardPlugin')) {
 					'menu_icon' => 'dashicons-screenoptions',
 					'item_published' => 'Service Card Block Published',
                     'item_updated' => 'Service Card Block Updated',
-					'template' => [['services-card-block/services-cards']],
+					'template' => [['services-card/services-cards']],
 					// 'template_lock' => 'all',
                 ]
             );
@@ -67,11 +67,11 @@ if (! class_exists('Q3Q4ServiceCardPlugin')) {
 
 			function q3q4_add_demo_submenu(){
 				add_submenu_page(
-					'edit.php?post_type=q3q4_service_card',
+					'edit.php?post_type=services_card',
 					'Demo and Help',
 					'Demo & Help',
 					'manage_options',
-					'q3q4_demo_page',
+					'demo_page',
 					[$this, 'q3q4_render_demo_page']
 				);
 			}
@@ -94,7 +94,7 @@ if (! class_exists('Q3Q4ServiceCardPlugin')) {
         {
             if ('shortcode' === $columnName) {
                 echo '<div class="bPlAdminShortcode" id="bPlAdminShortcode-' . esc_attr($postId) . '">
-                        <input value="[q3q4_service_card id=' . esc_attr($postId) . ']" onclick="copyBPlAdminShortcode(\'' . esc_attr($postId) . '\')" readonly>
+                        <input value="[services_card id=' . esc_attr($postId) . ']" onclick="copyBPlAdminShortcode(\'' . esc_attr($postId) . '\')" readonly>
                         <span class="tooltip">Copy To Clipboard</span>
                       </div>';
             }
@@ -169,12 +169,12 @@ if (! class_exists('Q3Q4ServiceCardPlugin')) {
         {
            	global $typenow;
 
-				if ('q3q4_service_card' === $typenow) {
+				if ('services_card' === $typenow) {
 					
 					wp_enqueue_script( 'admin-post-js', Q3Q4SCB_DIR_URL . 'build/admin-post.js', [], Q3Q4SCB_VERSION, true );
 					wp_enqueue_style( 'admin-post-css', Q3Q4SCB_DIR_URL . 'build/admin-post.css', [], Q3Q4SCB_VERSION );
 
-					if ($screen === "q3q4_service_card_page_q3q4_demo_page") {
+					if ($screen === "services_card_page_demo_page") {
 						wp_enqueue_script( 'bpl-admin-dashboard-js', Q3Q4SCB_DIR_URL . 'build/admin-dashboard.js', [ 'react', 'react-dom' ], Q3Q4SCB_VERSION, true );
 						wp_enqueue_style( 'bpl-admin-dashboard-css', Q3Q4SCB_DIR_URL . 'build/admin-dashboard.css', [], Q3Q4SCB_VERSION );
 					}
@@ -199,7 +199,7 @@ if (! class_exists('Q3Q4ServiceCardPlugin')) {
 
       // Redirect to service card layout post type
 				wp_safe_redirect(
-					admin_url('edit.php?post_type=q3q4_service_card&page=q3q4_demo_page')
+					admin_url('edit.php?post_type=services_card&page=demo_page')
 				);
 				exit;
     }

@@ -24,7 +24,7 @@ const ServiceCard = ( {
 
 	const renderVerticalCard = () => (
 		<div
-			className="card-vertical services-card-block-service"
+			className="card-vertical services-card-service"
 			onClick={ () => handleActiveCArd( index ) }
 		>
 			{
@@ -51,7 +51,7 @@ const ServiceCard = ( {
 
 	const renderHorizontalCard = () => (
 		<div
-			className="card-horizontal services-card-block-service"
+			className="card-horizontal services-card-service"
 			onClick={ () => handleActiveCArd( index ) }
 		>
 				{
@@ -80,7 +80,7 @@ const ServiceCard = ( {
 
 	const renderDiagonalCard = () => (
 		<div
-			className="card-diagonal services-card-block-service"
+			className="card-diagonal services-card-service"
 			onClick={ () => handleActiveCArd( index ) }
 		>
 			<div className="diagonal-bg"></div>
