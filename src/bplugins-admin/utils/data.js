@@ -1,4 +1,4 @@
-const slug = 'panorama';
+const slug = 'services-card';
 
 export const dashboardInfo = (info) => {
 	const { version, isPremium, hasPro } = info;
@@ -24,9 +24,9 @@ export const dashboardInfo = (info) => {
 			pricing: `https://bplugins.com/products/${slug}/pricing`,
 		},
 		freemius: {
-			product_id: 8824,
-			plan_id: 14971,
-			public_key: 'pk_a112d1d1d66d3b480dbea5690d3ff'
+			product_id: 20850,
+			plan_id: 34733,
+			public_key: 'pk_5281f27702c9ad825bd76b8effa9e'
 		}
 	}
 }

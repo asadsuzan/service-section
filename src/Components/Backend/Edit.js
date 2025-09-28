@@ -11,7 +11,7 @@ const Edit = (props) => {
 
 	const { isPremium, isLoading } = usePremiumInEditor("scbUtils", "scbPremiumChecker");
 
-	console.log({ isLoading, isPremium });
+	console.log(postType);
 
 	return (
 		<>
@@ -24,9 +24,9 @@ const Edit = (props) => {
 					device={device}
 				/>
 
-				{postType == 'q3q4_service_card' && (
+				{postType == 'services_card' && (
 					<ClipBoard
-						shortcode={`[q3q4_service_card id=${postId}]`}
+						shortcode={`[services_card id=${postId}]`}
 					/>
 				)}
 				<App

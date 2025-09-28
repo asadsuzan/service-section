@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Services Card
  * Description: A service card block with multiple themes and an easy-to-use interface.
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: bPlugins
  * Author URI: https://bplugins.com
  * License: GPLv3
@@ -31,7 +31,7 @@ if ( function_exists( 'sc_fs' ) ) {
 		}
 	});
 } else {
-	define('Q3Q4SCB_VERSION', (isset($_SERVER['HTTP_HOST']) && 'localhost' === $_SERVER['HTTP_HOST']) ? time() : '1.0.0');
+	define('Q3Q4SCB_VERSION', (isset($_SERVER['HTTP_HOST']) && 'localhost' === $_SERVER['HTTP_HOST']) ? time() : '1.0.1');
 	define('Q3Q4SCB_DIR_URL', plugin_dir_url(__FILE__));
 	define('Q3Q4SCB_DIR_PATH', plugin_dir_path(__FILE__));
 	define( 'Q3Q4SCB_HAS_PRO', file_exists( dirname(__FILE__) . '/freemius/start.php' ) );
@@ -252,13 +252,6 @@ if ( function_exists( 'sc_fs' ) ) {
 					}
 				}
 
-
-			
-				
-				
-				
-				
-				
 				public function adminEnqueueScripts($screen): void {
 					global $typenow;
 
