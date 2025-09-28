@@ -3,7 +3,7 @@ Contributors: bplugins, suzan
 Tags: service, service card, blocks, gutenberg
 Requires at least: 4.0
 Tested up to: 6.8
-Stable tag: 1.0.1
+Stable tag: 1.0.5
 Requires PHP: 7.1
 Donate link: https://www.buymeacoffee.com/abuhayat/
 License: GPLv3
@@ -81,6 +81,18 @@ Not at all. Everything is no-code and point-and-click.
 4. Responsive mobile view
 
 == Changelog ==
+
+= 1.0.5 - 28 Sept, 2025 =
+* update sdk
+
+= 1.0.4 - 28 Sept, 2025 =
+* update sdk
+
+= 1.0.3 - 28 Sept, 2025 =
+* update sdk
+
+= 1.0.2 - 28 Sept, 2025 =
+* fix shortcode issues
 
 = 1.0.1 - 25 Sept, 2025 =
 * update freemius sdk

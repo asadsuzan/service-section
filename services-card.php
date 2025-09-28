@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Services Card
  * Description: A service card block with multiple themes and an easy-to-use interface.
- * Version: 1.0.1
+ * Version: 1.0.5
  * Author: bPlugins
  * Author URI: https://bplugins.com
  * License: GPLv3
@@ -12,14 +12,14 @@
  * @fs_free_only /freemius-lite
  */
 
-namespace BPlugins\ServicesCard;
+
 
 // Exit if accessed directly.
 if (! defined('ABSPATH')) {
     exit;
 }
 
-// freemius start now
+
 
 if ( function_exists( 'sc_fs' ) ) {
 	register_activation_hook(__FILE__, function () {
@@ -30,8 +30,9 @@ if ( function_exists( 'sc_fs' ) ) {
 			deactivate_plugins('services-card-pro/services-card.php');
 		}
 	});
+	  
 } else {
-	define('Q3Q4SCB_VERSION', (isset($_SERVER['HTTP_HOST']) && 'localhost' === $_SERVER['HTTP_HOST']) ? time() : '1.0.1');
+	define('Q3Q4SCB_VERSION', (isset($_SERVER['HTTP_HOST']) && 'localhost' === $_SERVER['HTTP_HOST']) ? time() : '1.0.5');
 	define('Q3Q4SCB_DIR_URL', plugin_dir_url(__FILE__));
 	define('Q3Q4SCB_DIR_PATH', plugin_dir_path(__FILE__));
 	define( 'Q3Q4SCB_HAS_PRO', file_exists( dirname(__FILE__) . '/freemius/start.php' ) );
@@ -96,10 +97,7 @@ if ( function_exists( 'sc_fs' ) ) {
 				add_shortcode('services_card', [$this, 'serviceCardShortcode']);
 				add_action('admin_enqueue_scripts', [$this, 'adminEnqueueScripts']);
 				add_action('admin_menu', [$this, 'q3q4_add_demo_submenu']);
-				// Plugin activation + redirect logic
-				register_activation_hook( __FILE__, [$this,'q3q4_plugin_activate'] );
-				add_action( 'admin_init', [$this,'q3q4_plugin_redirect'] );
-
+			
 				// for premium only
 				add_action('wp_ajax_scbPremiumChecker', [$this, 'scbPremiumChecker']);
 				add_action('wp_ajax_nopriv_scbPremiumChecker', [$this, 'scbPremiumChecker']);
@@ -107,15 +105,18 @@ if ( function_exists( 'sc_fs' ) ) {
 				add_action('rest_api_init', [$this, 'registerSettings']);
 			}
 			function scbPremiumChecker(){
-				$nonce = sanitize_text_field($_POST['_wpnonce'] ?? null);
+				// $nonce = sanitize_text_field($_POST['_wpnonce'] ?? null);
+				$nonce = sanitize_text_field(wp_unslash($_POST['_wpnonce'] ?? ''));
 
 				if (!wp_verify_nonce($nonce, 'wp_ajax')) {
 					wp_send_json_error('Invalid Request');
 				}
+			
 
 				wp_send_json_success([
 					'isPipe' => scbIsPremium()
 				]);
+			
 			}
 
 			function registerSettings(){
@@ -130,7 +131,7 @@ if ( function_exists( 'sc_fs' ) ) {
 				]);
 			}
 
-			public function onInit(): void {
+			public function onInit() {
 				register_block_type(__DIR__ . '/build');
 					register_post_type(
 					'services_card',
@@ -181,7 +182,7 @@ if ( function_exists( 'sc_fs' ) ) {
 				<?php
 			}
 
-			public function manageCptColumns(string $columnName, int $postId): void  {
+			public function manageCptColumns($columnName,  $postId): void  {
 				if ('shortcode' === $columnName) {
 					echo '<div class="bPlAdminShortcode" id="bPlAdminShortcode-' . esc_attr($postId) . '">
 							<input value="[services_card id=' . esc_attr($postId) . ']" onclick="copyBPlAdminShortcode(\'' . esc_attr($postId) . '\')" readonly>
@@ -194,12 +195,12 @@ if ( function_exists( 'sc_fs' ) ) {
 				}
 			}
 
-			public function displayContent(\WP_Post $post): string{
+			public function displayContent($post): string{
 				$blocks = parse_blocks($post->post_content);
 				return render_block($blocks[0]);
 			}
 
-			public function cptColumns(array $columns): array {
+			public function cptColumns($columns): array {
 				unset($columns['date']);
 				$columns['shortcode'] = 'Shortcode';
 				$columns['date']      = 'Date';
@@ -268,28 +269,7 @@ if ( function_exists( 'sc_fs' ) ) {
 					}
 			}
 
-			//plugin activate
-			function q3q4_plugin_activate() {
-				set_transient('_q3q4_do_activation_redirect', true, 30);
-			}
-
-			//plugin  redirect
-			function q3q4_plugin_redirect() {	
-				if ( get_transient( '_q3q4_do_activation_redirect' ) ) {
-				delete_transient( '_q3q4_do_activation_redirect' );
-
-					// Skip redirect if multiple plugins activated
-					if ( isset( $_GET['activate-multi'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-						return;
-					}
-
-					// Redirect to service card layout post type
-						wp_safe_redirect(
-							admin_url('edit.php?post_type=services_card&page=demo_page')
-						);
-						exit;
-				}
-			}
+		
 
 		}
 
