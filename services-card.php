@@ -20,6 +20,12 @@ if (! defined('ABSPATH')) {
 }
 
 
+// ==========================
+//  Load Codestar Framework
+// ==========================
+if ( file_exists( __DIR__ . '/vendor/codestar-framework/codestar-framework.php' ) ) {
+    require_once __DIR__ . '/vendor/codestar-framework/codestar-framework.php';
+}
 
 if ( function_exists( 'sc_fs' ) ) {
 	register_activation_hook(__FILE__, function () {
@@ -86,6 +92,48 @@ if ( function_exists( 'sc_fs' ) ) {
 	function scbIsPremium(){
 		return Q3Q4SCB_HAS_PRO ? sc_fs()->can_use_premium_code() : false;
 	}
+
+	  // ==========================
+    //  Codestar Options
+    // ==========================
+    if ( class_exists( 'CSF' ) ) {
+        $prefix = 'scb_options';
+
+        // Create main settings panel
+       CSF::createOptions( $prefix, array(
+        'menu_title'      => 'Settings',
+        'menu_slug'       => 'services-card-settings',
+        'framework_title' => 'Services Card <small>by bPlugins</small>',
+        'menu_type'       => 'submenu', // 👈 force submenu
+        'menu_parent'     => 'edit.php?post_type=services_card', // 👈 under CPT
+        'menu_position'   => 3, // position in CPT menu
+        'show_bar_menu'   => false,
+    ) );
+
+        // General Settings Section
+        CSF::createSection( $prefix, array(
+            'title'  => 'General Settings',
+            'fields' => array(
+                array(
+                    'id'      => 'scb_primary_color',
+                    'type'    => 'color',
+                    'title'   => 'Primary Color',
+                    'default' => '#004e75',
+                ),
+                array(
+                    'id'    => 'scb_logo',
+                    'type'  => 'media',
+                    'title' => 'Upload Logo',
+                ),
+                array(
+                    'id'      => 'scb_enable_animation',
+                    'type'    => 'switcher',
+                    'title'   => 'Enable Animation',
+                    'default' => true,
+                ),
+            )
+        ) );
+    }
 
 	// our plugin main logic
 	if (! class_exists('Q3Q4ServiceCardPlugin')) {
