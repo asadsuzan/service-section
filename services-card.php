@@ -35,7 +35,7 @@ if ( function_exists( 'sc_fs' ) ) {
 	define('Q3Q4SCB_VERSION', (isset($_SERVER['HTTP_HOST']) && 'localhost' === $_SERVER['HTTP_HOST']) ? time() : '1.0.5');
 	define('Q3Q4SCB_DIR_URL', plugin_dir_url(__FILE__));
 	define('Q3Q4SCB_DIR_PATH', plugin_dir_path(__FILE__));
-	define( 'Q3Q4SCB_HAS_PRO', file_exists( dirname(__FILE__) . '/freemius/start.php' ) );
+	define( 'Q3Q4SCB_HAS_PRO', file_exists( dirname(__FILE__) . '/vendor/freemius/start.php' ) );
 
 	if ( ! function_exists( 'sc_fs' ) ) {
 		function sc_fs() {
@@ -44,9 +44,9 @@ if ( function_exists( 'sc_fs' ) ) {
 			if ( ! isset( $sc_fs ) ) {
 
 				if ( Q3Q4SCB_HAS_PRO ) {
-					require_once dirname(__FILE__) . '/freemius/start.php';
+					require_once dirname(__FILE__) . '/vendor/freemius/start.php';
 				}else {
-					require_once dirname(__FILE__) . '/freemius-lite/start.php';
+					require_once dirname(__FILE__) . '/vendor/freemius-lite/start.php';
 				}
 
 				$q3q4scbConfig = array(

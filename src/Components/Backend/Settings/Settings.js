@@ -71,6 +71,8 @@ const Settings = ({ attributes, setAttributes, device, clientId, isPremium, site
 				/>
 			</BlockControls>
 
+
+
 			<AboutProModal
 				isProModalOpen={isProModalOpen}
 				setIsProModalOpen={setIsProModalOpen}

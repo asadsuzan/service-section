@@ -25,7 +25,7 @@ export const dashboardInfo = (info) => {
 		},
 		freemius: {
 			product_id: 20850,
-			plan_id: 34733,
+			plan_id: 34935,
 			public_key: 'pk_5281f27702c9ad825bd76b8effa9e'
 		}
 	}
