@@ -6,8 +6,11 @@ const navigation = [
 	{ name: 'Welcome', href: '/welcome' },
 	{ name: 'Demos', href: '/demos' },
 	{ name: 'Pricing', href: '/pricing' },
-	{ name: 'Feature Comparison', href: '/feature-comparison' }
+	{ name: 'Feature Comparison', href: '/feature-comparison' },
+	{ name: "Filter Demos", href: "/filter-demos" },
 ];
+
+
 
 const Layout = (props) => {
 	const { isPremium } = props;
@@ -18,7 +21,7 @@ const Layout = (props) => {
 		<Header {...props}>
 			<nav className='bPlDashboardNav'>
 				{navigation
-					?.filter(item => !isPremium || !['/purchase', '/pricing', '/feature-comparison'].includes(item.href)) // Hide link for premium users
+					?.filter(item => !isPremium || !['/purchase', '/pricing', '/feature-comparison', '/filter-demos'].includes(item.href)) // Hide link for premium users
 					?.map((item, index) => <Link
 						key={index}
 						to={item.href}

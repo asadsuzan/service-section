@@ -233,3 +233,29 @@ export const featureCompareInfo = {
 	]
 }
 
+export const filterDemoInfo = {
+	categories: [
+		{ label: 'All', value: 'all', col: 1, height: '400px' },
+		{ label: 'Vertical', value: 'vertical', col: 1, height: '400px' },
+		{ label: 'Horizontal', value: 'horizontal', col: 1, height: '400px' },
+		{ label: 'Diagonal', value: 'diagonal', col: 1, height: '400px' },
+	],
+	demos: [
+		{
+			title: 'Vertical',
+			categories: ['vertical'],
+			url: 'https://i.ibb.co.com/Ld54Mt7f/Generated-Image-September-22-2025-3-01-PM.png'
+		},
+		{
+			title: 'Horizontal',
+			categories: ['horizontal'],
+			url: 'https://i.ibb.co.com/1t2frHD3/Generated-Image-September-22-2025-3-05-PM.png'
+		},
+		{
+			title: 'Diagonal',
+			categories: ['diagonal'],
+			url: 'https://i.ibb.co.com/jPLhTL7S/Generated-Image-September-22-2025-3-10-PM.png'
+		}
+
+	]
+}
